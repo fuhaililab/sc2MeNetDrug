@@ -1,0 +1,74 @@
+---
+layout: default
+title: Working Directory Setting and Data Uploading
+permalink: /data/
+nav_order: 4
+---
+
+# Working Directory and Data Upload
+
+## Setting Working Directory
+
+<p align="center"><img src="../pic/workingDir.png" alt="workingDir" style="zoom:50%;" /></p>
+
+Before you upload your data, you should first select a working directory, where all the results will be saved. Notice that if you have mulitple data sets  to analyze, you should set different working directories for each data set, otherwise new results will automatically overwrite the previous results. All the results are saved in `.RData` format, which makes it easy for the application to reload it, but you can also download data in other formats inside the application.
+
+To set a working directory, first click the grey button "Directory select".
+
+<p align="center"><img src="../pic/selectDir.png" alt="selectDir" style="zoom:50%;" /></p>
+
+Then, the above interface should be displayed and you can click the directory you want to choose on the left side. After you choose a directory, click "Select". Finally, click the blue button "Set working Directory" to change the working directory in the application. Once you see the directory you choose displayed in application, you have successfully set the directory. Notice that after you set or reset the directory, all the previous data and results loaded in the application will be unloaded and the whole application will be reinitialized. 
+
+## Upload Data
+
+ After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you don't have cell annotation results, you should upload your data in the "Upstream analysis" part. Seq-RNA read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your data set, you should check the header checkbox below "upload frame". Notice that we only accept files with sizes less than 5GB.
+
+<p align="center"><img src="../pic/rawDataUpload.png" alt="rawDataUpload" style="zoom:33%;" /></p>
+
+Group or design file is an optional choice, but we recommend you upload it in order to obtain reasonable analysis results. The file should be a csv or RDS file, and the data should be a data frame with only one column. The length of the row should be equal to the number of cells in the read count data. **Please don't include the row name in your data**. 
+
+If you have cell annotation results, you should upload your data in the "Downstream analysis data" part. Seq-RNA read count data in this part has the same format as that in the "raw scRNA-seq Data Upload" part. But in the cell type and group file upload, you should upload a csv file with your cell annotation data. The file should have one or two columns. The first column should be your cell annotation result and the second column should be your group or design information, which is optional. Similarly, **don't include the row name in your data**. 
+
+Here we provide you with a sample script about how to process data file and generate RDS file used for tool:
+
+```R
+library(Matrix)
+#Read data in to memory
+data<-readMM("read_count_matrix.mtx")
+#Read gene symbol data
+genes<-read.csv("genes.tsv",sep="\t",header = 0)
+#Read barcode data, this is optional
+barcode<-read.csv("barcodes.tsv",sep="\t",header = 0)
+#Convert data to matrix format
+data<-as.matrix(data)
+#Assign gene symbol to data matrix
+rownames(data)<-genes$gene_symbol
+colnames(data)<-barcode$V1
+#Check and remove all duplicated gene from data
+#Here we will retain the gene that have maximum variance among all data that have same gene symbol
+gene_variance<-apply(data,1,var)
+data<-data[order(gene_variance,decreasing=T),]
+data<-total_data[!duplicated(e10_gene$V2),]
+#Finally, save data as RDS file
+saveRDS(data,file="data.RDS")
+
+#generate group or design file for upstream analysis
+#This is just fake data that is used to give you a sense about the format of group file.
+#Here, number of row in group list(num_group1+num_group2) must be equal to the cell in read count data
+group_list<-as.character(c(rep("group1",num_group1),rep("group2",num_group2)))
+group_list<-data.frame(group_list)
+saveRDS(group_list,file="group.RDS")
+```
+
+## Process Drug File
+
+In the cell-cell communication and drug discovering analysis, SC2NetDrug needs a Connectivity Map database in order to build a drug rank matrix. However, since we cannot directly include this data in SC2NetDrug, the user needs to download raw data from a website. SC2NetDrug can help the user to process data and unlock cell-cell communication and drug discovering analyses. You can find more information about the Connectivity Map [here](https://docs.google.com/document/d/1q2gciWRhVCAAnlvF2iRLuJ7whrGP6QjpsCMq1yWz7dU/edit). 
+
+First, you need to go to the[NCBI website](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742) and download following data:
+
+* `GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz`
+* `GSE92742_Broad_LINCS_gene_info.txt.gz`
+* `GSE92742_Broad_LINCS_sig_info.txt.gz`
+* `GSE92742_Broad_LINCS_pert_info.txt.gz`
+
+Next, put all data files into one directory. Open SC2NetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should do cell-cell communication and drug discovering analyses.  **You don't need to process data twice even if you restart the application or change the working directory**. 

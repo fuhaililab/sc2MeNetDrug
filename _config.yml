@@ -1,0 +1,6 @@
+remote_theme: pmarsceill/just-the-docs
+title: SC2NetDrug
+aux_links:
+  "View SC2NetDrug on Github":
+    - "https://jiaruifeng.github.io"
+markdown: kramdown
