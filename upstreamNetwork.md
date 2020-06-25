@@ -87,7 +87,7 @@ Inside the group directory, you will see three files:
 
 ## Methodology
 
-Upstream network analysis in SC2NetDrug is done in several steps: 
+Upstream network analysis in sc2MeNetDrug is done in several steps: 
 
 First, differentially expressed genes in the test or design group for each cell type are based on two tests, the first being the Wilcoxon rank sum test and the second being the Likelihood-ratio test<sup>1</sup>. The genes that have log fold change values larger than the threshold and adjusted p-values for both tests less than the threshold will be selected as differentially expressed genes. The tests are done by the `FindMarkers` function in the `Seurat` package with parameters set as `test.use="wilcox"` and `test.use="bimod"` for the two tests respectively.
 

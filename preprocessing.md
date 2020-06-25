@@ -46,7 +46,7 @@ If you upload data in the "Downstream Analysis Data" part, you will have:
 
 ## Methodology
 
-The preprocessing for scRNA-seq read count data in SC2NetDrug consists of three steps: quality control, normalization and imputation.
+The preprocessing for scRNA-seq read count data in sc2MeNetDrug consists of three steps: quality control, normalization and imputation.
 
 ### Quality Control
 

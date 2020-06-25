@@ -34,7 +34,7 @@ After dimension reduction, you will receive two `.RData` files in your working d
 
 ## Methodology
 
-Dimension reduction analysis in SC2NetDrug involves several steps:
+Dimension reduction analysis in sc2MeNetDrug involves several steps:
 
 First, select first 2048 variable genes. To select variable genes, use local polynomial regression to fit the relationship of log(variance) and log(mean). Then, standardize the gene expression values using the observed mean and expected variance (given by the fitted line). Gene expression variance is then calculated on the standardized values after clipping. This is done by `FindVariableFeatures` with `selection.method` set as `"vst"` in the`Seurat` package<sup>[1]</sup>.
 

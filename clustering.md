@@ -39,15 +39,15 @@ After clustering, you will obtain three `.RData` files in your working directory
 
 ## Methodology
 
-Clustering analysis in SC2NetDrug involves the two steps described below.
+Clustering analysis in sc2MeNetDrug involves the two steps described below.
 
 ### Main clustering
 
-SC2NetDrug uses the OPTICS<sup>1</sup> algorithm in main clustering. This is done by the`optics` and `extractDBSCAN` functions in the R package `dbscan`. 
+sc2MeNetDrug uses the OPTICS<sup>1</sup> algorithm in main clustering. This is done by the`optics` and `extractDBSCAN` functions in the R package `dbscan`. 
 
 ### Sub-clustering
 
-SC2NetDrug uses the Gaussian Mixture Model (GMM) in sub-clustering. First, the application will discover big clusters in main clustering and run the GMM algorithm in this cluster. This is done by the `Mclust` function in the`mclust` R package with parameters set as `model="EII"`. The number of clusters in the GMM is set based on the size of main cluster.
+sc2MeNetDrug uses the Gaussian Mixture Model (GMM) in sub-clustering. First, the application will discover big clusters in main clustering and run the GMM algorithm in this cluster. This is done by the `Mclust` function in the`mclust` R package with parameters set as `model="EII"`. The number of clusters in the GMM is set based on the size of main cluster.
 
 
 

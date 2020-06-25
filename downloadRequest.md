@@ -5,17 +5,14 @@ permalink: /downloadRequest/
 nav_order: 2
 ---
 
-## S2CNetDrug Download Request
+## sc2MeNetDrug Download Request
 
-In order to download S2CNetDrug, please fill the form below. Then we will send download link to your email.
+In order to download sc2MeNetDrug, please fill the form below. Then we will send download link to your email.
 
 <div class="container">  
   <form id="contact"   action="https://formspree.io/mrgykwal"
   method="POST">
-    <h3>S2CNetDrug Download Request Form</h3>
-    <fieldset>
-      <input name="name" placeholder="Your name" type="text" tabindex="1" required autofocus>
-    </fieldset>
+    <h3>sc2MeNetDrug Download Request Form</h3>
     <fieldset>
       <input name="email" placeholder="Your Email Address" type="email" tabindex="2" required>
     </fieldset>
@@ -37,4 +34,5 @@ In order to download S2CNetDrug, please fill the form below. Then we will send d
     </fieldset>
   </form>
 </div>
+
 

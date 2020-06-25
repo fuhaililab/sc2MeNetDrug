@@ -62,7 +62,7 @@ saveRDS(group_list,file="group.RDS")
 
 ## Process Drug File
 
-In the cell-cell communication and drug discovering analysis, SC2NetDrug needs a Connectivity Map database in order to build a drug rank matrix. However, since we cannot directly include this data in SC2NetDrug, the user needs to download raw data from a website. SC2NetDrug can help the user to process data and unlock cell-cell communication and drug discovering analyses. You can find more information about the Connectivity Map [here](https://docs.google.com/document/d/1q2gciWRhVCAAnlvF2iRLuJ7whrGP6QjpsCMq1yWz7dU/edit). 
+In the cell-cell communication and drug discovering analysis, sc2MeNetDrug needs a Connectivity Map database in order to build a drug rank matrix. However, since we cannot directly include this data in sc2MeNetDrug, the user needs to download raw data from a website. sc2MeNetDrug can help the user to process data and unlock cell-cell communication and drug discovering analyses. You can find more information about the Connectivity Map [here](https://docs.google.com/document/d/1q2gciWRhVCAAnlvF2iRLuJ7whrGP6QjpsCMq1yWz7dU/edit). 
 
 First, you need to go to the[NCBI website](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742) and download following data:
 
@@ -71,4 +71,4 @@ First, you need to go to the[NCBI website](https://www.ncbi.nlm.nih.gov/geo/quer
 * `GSE92742_Broad_LINCS_sig_info.txt.gz`
 * `GSE92742_Broad_LINCS_pert_info.txt.gz`
 
-Next, put all data files into one directory. Open SC2NetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should do cell-cell communication and drug discovering analyses.  **You don't need to process data twice even if you restart the application or change the working directory**. 
+Next, put all data files into one directory. Open sc2MeNetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should do cell-cell communication and drug discovering analyses.  **You don't need to process data twice even if you restart the application or change the working directory**. 

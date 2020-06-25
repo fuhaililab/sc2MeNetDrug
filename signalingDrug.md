@@ -33,7 +33,7 @@ All data for drug discovering based on signaling signatures will be saved in "ce
 
 ### Drug Discovering
 
-After we get up-regulated genes for eachof the two cell types in the cell-cell communication analysis, SC2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each cell type. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, the application will compute an enrichment score for the up-regulated gene set for each drug in each cell type using the drug rank matrix. Then, the top K drugs with the lowest enrichment scores would be selected as potential drugs, where K is the number of top drugs.
+After we get up-regulated genes for eachof the two cell types in the cell-cell communication analysis, sc2MeNetDrug will use GSEA and a drug rank matrix to discover potential drugs for each cell type. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, the application will compute an enrichment score for the up-regulated gene set for each drug in each cell type using the drug rank matrix. Then, the top K drugs with the lowest enrichment scores would be selected as potential drugs, where K is the number of top drugs.
 
 ### Drug Clustering
 

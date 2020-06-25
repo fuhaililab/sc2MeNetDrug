@@ -37,7 +37,7 @@ After cell annotation, you will get three `.RData` files in your working directo
 
 ## Methodology
 
-Cell annotation in SC2NetDrug is computed using Gene Set Enrichment Analysis (GSEA)<sup>1</sup>. After the user selects candidate cell types in the "Biomarker Gene" section and starts computation, the application will compute the log fold change for cluster $N$ using the following formula:
+Cell annotation in sc2MeNetDrug is computed using Gene Set Enrichment Analysis (GSEA)<sup>1</sup>. After the user selects candidate cell types in the "Biomarker Gene" section and starts computation, the application will compute the log fold change for cluster $N$ using the following formula:
 \\[\text{log fold change for cluster N}=\text{mean expression for cluster N}-{\text{mean expression for other cells}}\\]
 
 Then we order the genes based on log fold changes as genes rank and compute enrichment scores of marker gene sets for each candidate cell type. Finally, the cell type with the largest enrichment score will be selected as the type of this cluster. However, if none of the cell types have a positive enrichment score, the cluster will be annotated as unknown. 
