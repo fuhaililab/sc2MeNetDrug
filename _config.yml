@@ -1,7 +1,7 @@
 remote_theme: pmarsceill/just-the-docs
-title: SC2NetDrug
+title: sc2MeNetDrug
 aux_links:
-  "View SC2NetDrug on Github":
-    - "https://jiaruifeng.github.io"
+  "View sc2MeNetDrug on Github":
+    - "https://github.com/fuhaililab/sc2MeNetDrug"
 markdown: kramdown
-color_scheme: test
+color_scheme: green
