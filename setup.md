@@ -7,13 +7,13 @@ has_children: true
 
 # Gene Expression, Communication and Drug Discovering (Downstream Analysis)
 
-This part will be avaliable after you upload data in the "Upstream analysis Data" part and finish the cell annotation part, or upload read count data and cell annotation results in the "Downstream Analysis Data" part.
+This part will be available after you upload data in the "Upstream analysis Data" part and finish the cell annotation part, or upload read count data and cell annotation results in the "Downstream Analysis Data" part.
 
 First, you must specify which data you want to use for the downstream analysis. Select "Upstream analysis result data" to use the read count data and cell annotation results computed in the upstream analysis. Select “Downstream analysis uploaded data ” to use data you uploaded in the "Downstream analysis Data" part. After selecting, click the blue button "Load data" to confirm. **Notice that this setting will be applied to all the downstream analyses**.
 
 <p align="center"><img src="pic/geneExpression.png" alt="geneExpression" style="zoom:50%;" /></p>
 
-You can then select a ligand-receptor intercations database. Currently, we provide three databases. The database you select will be used in all of the following analyses that use ligand and receptor data.
+You can then select a ligand-receptor interactions database. Currently, we provide three databases. The database you select will be used in all of the following analyses that use ligand and receptor data.
 
 Notice that in order to do cell-cell communication and drug discovering analyses, you must download drug data and perform preprocessing in the application, you can find more information about this in [Working Directory Setting and Data Uploading](data.md).
 

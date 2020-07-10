@@ -9,7 +9,7 @@ nav_order: 9
 
 ## Introduction
 
-This part is only avaliable after you upload data in the "Upstream analysis Data" part and finish clustering analysis. Cell annotation allows you to annotate cell type for each cell sample in the dataset based on clustering results and expression information. Before doing the cell annotation analysis, you need to select a candidate cell type in the bottom right of the "Biomarker Gene" section:
+This part is only available after you upload data in the "Upstream analysis Data" part and finish clustering analysis. Cell annotation allows you to annotate cell type for each cell sample in the dataset based on clustering results and expression information. Before doing the cell annotation analysis, you need to select a candidate cell type in the bottom right of the "Biomarker Gene" section:
 
 <p align="center"><img src="../pic/cellTypeSelect.png" alt="cellTypeSelect" style="zoom:40%;" /></p>
 

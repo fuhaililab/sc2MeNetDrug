@@ -9,11 +9,11 @@ nav_order: 5
 
 ## Introduction
 
-Once the required data has been successfully uploaded, the preprocessing analysis can be performed. Preprocessing allows you to do quailty control, normalization, and imputation for the read count data set. Imputation is an optional step in preprocessing as it takes much longer than other steps, but it is recommended because it gives more reasonable results in following analyses. Note that **if you have a group or design file, you should upload it before performing preprocessing.** 
+Once the required data has been successfully uploaded, the preprocessing analysis can be performed. Preprocessing allows you to do quality control, normalization, and imputation for the read count data set. Imputation is an optional step in preprocessing as it takes much longer than other steps, but it is recommended because it gives more reasonable results in following analyses. Note that **if you have a group or design file, you should upload it before performing preprocessing.** 
 
 <p align="center"><img src="../pic/preprocessing.png" alt="preprocessing" style="zoom:50%;" /></p>
 
-If you want to do imputation, check the imputation checkbox. Then, click the blue button "Preprocessing" to start preprocessing. Once preprocessing finishes, the results are displayed at the top of the application:
+If you want to do imputation, check the "imputation" checkbox. If the RNA-seq data was taken from mice, check "Mouse Gene Convert to Human Gene." Then, click the blue button "Do preprocessing" to start preprocessing. Once preprocessing finishes, the results are displayed at the top of the application:
 
 <p align="center"><img src="../pic/preprocessingFinish.png" alt="preprocessingFinish" style="zoom:50%;" /></p>
 

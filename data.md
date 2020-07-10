@@ -7,27 +7,27 @@ nav_order: 4
 
 # Working Directory and Data Upload
 
-## Setting Working Directory
+## Set Working Directory
 
 <p align="center"><img src="../pic/workingDir.png" alt="workingDir" style="zoom:50%;" /></p>
 
-Before you upload your data, you should first select a working directory, where all the results will be saved. Notice that if you have mulitple data sets  to analyze, you should set different working directories for each data set, otherwise new results will automatically overwrite the previous results. All the results are saved in `.RData` format, which makes it easy for the application to reload it, but you can also download data in other formats inside the application.
+Before you upload your data, you should first select a working directory, where all the results will be saved. Note that if you have multiple data sets  to analyze, you should set different working directories for each data set, otherwise new results will automatically overwrite the previous results. All the results are saved in `.RData` format, which makes it easy for the application to reload it, but you can also download data in other formats inside the application.
 
-To set a working directory, first click the grey button "Directory select".
+To set a working directory, first click the grey button "Select Working Directory".
 
 <p align="center"><img src="../pic/selectDir.png" alt="selectDir" style="zoom:50%;" /></p>
 
-Then, the above interface should be displayed and you can click the directory you want to choose on the left side. After you choose a directory, click "Select". Finally, click the blue button "Set working Directory" to change the working directory in the application. Once you see the directory you choose displayed in application, you have successfully set the directory. Notice that after you set or reset the directory, all the previous data and results loaded in the application will be unloaded and the whole application will be reinitialized. 
+Then, the above interface should be displayed and you can click the directory you want to choose on the left side. After you choose a directory, click "Select". Finally, click the blue button "Set Working Directory" to change the working directory in the application. Once you see the directory you choose displayed in application, you have successfully set the directory. Notice that after you set or reset the directory, all the previous data and results loaded in the application will be unloaded and the whole application will be reinitialized. 
 
 ## Upload Data
 
- After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you don't have cell annotation results, you should upload your data in the "Upstream analysis" part. Seq-RNA read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your data set, you should check the header checkbox below "upload frame". Notice that we only accept files with sizes less than 5GB.
+ After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you don't have cell annotation results, you should upload your data in the "Upstream analysis" part. RNA-seq read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your data set, you should check the "Header" checkbox below "Choose your group or design file". Notice that we only accept files with sizes less than 5GB.
 
 <p align="center"><img src="../pic/rawDataUpload.png" alt="rawDataUpload" style="zoom:33%;" /></p>
 
 Group or design file is an optional choice, but we recommend you upload it in order to obtain reasonable analysis results. The file should be a csv or RDS file, and the data should be a data frame with only one column. The length of the row should be equal to the number of cells in the read count data. **Please don't include the row name in your data**. 
 
-If you have cell annotation results, you should upload your data in the "Downstream analysis data" part. Seq-RNA read count data in this part has the same format as that in the "raw scRNA-seq Data Upload" part. But in the cell type and group file upload, you should upload a csv file with your cell annotation data. The file should have one or two columns. The first column should be your cell annotation result and the second column should be your group or design information, which is optional. Similarly, **don't include the row name in your data**. 
+If you have cell annotation results, you should upload your data in the "Downstream analysis data" part. RNA-seq read count data in this part has the same format as that in the "Upstream analysis" part. But in the cell type and group file upload, you should upload a csv file with your cell annotation data. The file should have one or two columns. The first column should be your cell annotation result and the second column should be your group or design information, which is optional. Similarly, **don't include the row name in your data**. 
 
 Here we provide you with a sample script about how to process data file and generate RDS file used for tool:
 
@@ -60,7 +60,7 @@ group_list<-data.frame(group_list)
 saveRDS(group_list,file="group.RDS")
 ```
 
-## Process Drug File
+## Process Drug File 
 
 In the cell-cell communication and drug discovering analysis, sc2MeNetDrug needs a Connectivity Map database in order to build a drug rank matrix. However, since we cannot directly include this data in sc2MeNetDrug, the user needs to download raw data from a website. sc2MeNetDrug can help the user to process data and unlock cell-cell communication and drug discovering analyses. You can find more information about the Connectivity Map [here](https://docs.google.com/document/d/1q2gciWRhVCAAnlvF2iRLuJ7whrGP6QjpsCMq1yWz7dU/edit). 
 
@@ -71,4 +71,4 @@ First, you need to go to the[NCBI website](https://www.ncbi.nlm.nih.gov/geo/quer
 * `GSE92742_Broad_LINCS_sig_info.txt.gz`
 * `GSE92742_Broad_LINCS_pert_info.txt.gz`
 
-Next, put all data files into one directory. Open sc2MeNetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should do cell-cell communication and drug discovering analyses.  **You don't need to process data twice even if you restart the application or change the working directory**. 
+Next, put all data files into one directory. Unzip the data files to create .txt or .gctx from the .gz formatted files. Open sc2MeNetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should do cell-cell communication and drug discovering analyses.  **You don't need to process data twice even if you restart the application or change the working directory**. 
