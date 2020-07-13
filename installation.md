@@ -7,7 +7,11 @@ nav_order: 3
 
 # Installation
 
-Here we provide two ways to run our application. First is a standalone desktop application and the second is run the code directly on Rstudio
+Here we provide three ways to run our application. First is a standalone desktop application and the second is run the code directly on Rstudio
+
+## Docker
+
+We also provide docker installation for sc2MeNetDrug. we recommend you to use Docker installation if possible. Since we set up all the environment appearpriately use docker image, so you do not worry about any environment issues that may happen during installation. For more information about docker installation, please send download request. 
 
 ## Desktop Application
 
