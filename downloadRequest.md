@@ -6,11 +6,11 @@ nav_order: 2
 
 ---
 
-
+<head><link rel="stylesheet" href="form.css"></head>
 
 ## sc2MeNetDrug Download Request
 
-In order to download S2CNetDrug, please fill the form below. Then we will send download link to your email.<head><link rel="stylesheet" href="form.css"></head>
+In order to download S2CNetDrug, please fill the form below. Then we will send download link to your email.
 
 <div class="container">  
   <form id="contact"   action="https://formspree.io/mrgykwal"
