@@ -21,13 +21,13 @@ Then, the above interface should be displayed and you can click the directory yo
 
 ## Upload Data
 
- After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you don't have cell annotation results, you should upload your data in the "Upstream analysis" part. RNA-seq read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your data set, you should check the "Header" checkbox below "Choose your group or design file". Notice that we only accept files with sizes less than 5GB.
+ After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you don't have cell annotation results, you should upload your data in the "Upstream analysis" part. RNA-seq read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your dataset, you should check the "Header" checkbox below "Choose your group or design file". Notice that we only accept files with sizes less than 5GB.
 
 <p align="center"><img src="../pic/rawDataUpload.png" alt="rawDataUpload" style="zoom:33%;" /></p>
 
 Group or design file is an optional choice, but we recommend you upload it in order to obtain reasonable analysis results. The file should be a csv or RDS file, and the data should be a data frame with only one column. The length of the row should be equal to the number of cells in the read count data. **Please don't include the row name in your data**. 
 
-If you have cell annotation results, you should upload your data in the "Downstream analysis data" part. RNA-seq read count data in this part has the same format as that in the "Upstream analysis" part. But in the cell type and group file upload, you should upload a csv file with your cell annotation data. The file should have one or two columns. The first column should be your cell annotation result and the second column should be your group or design information, which is optional. Similarly, **don't include the row name in your data**. 
+If you have cell annotation results, you can upload your data in the "Downstream analysis data" part. RNA-seq read count data in this part has the same format as that in the "Upstream analysis" part. But in the cell type and group file upload, you should upload a csv file with your cell annotation data. The file should have one or two columns. The first column should be your cell annotation result and the second column should be your group or design information, which is optional. Similarly, **don't include the row name in your data**. 
 
 Here we provide you with a sample script about how to process data file and generate RDS file used for tool:
 

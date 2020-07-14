@@ -19,7 +19,7 @@ Single cell RNA sequence (scRNA-seq) data analysis has developed rapidly in rece
 
 <p align="center"><img src="pic/workflow.png" alt="workflow" style="zoom:67%;" /></p>
 
-The above  code shows the overall workflow of sc2MeNetDrug. All the analyses done in sc2MeNetDrug can be divided into two parts: upstream analysis and downstream analysis. In upstream analysis, the user can upload read count scRNA-seq data and the application will go through preprocessing, dimension reduction, clustering, and obtain cell annotations for each cell sample in the data set. All downstream analyses can be performed like upstream network analyses, GO analysis, cell-cell communication network analysis, and drug discovery. Meanwhile, if you already have cell annotation results, you can upload it with your read count data to perform downstream analysis directly.
+The above  picture shows the overall workflow of sc2MeNetDrug. All the analyses done in sc2MeNetDrug can be divided into two parts: upstream analysis and downstream analysis. In upstream analysis, the user can upload read count scRNA-seq data and the application will go through preprocessing, dimension reduction, clustering, and obtain cell annotations for each cell sample in the data set. All downstream analyses can be performed like upstream network analyses, GO analysis, cell-cell communication network analysis, and drug discovery. Meanwhile, if you already have cell annotation results, you can upload it with your read count data to perform downstream analysis directly.
 
 sc2MeNetDrug has eight sections:
 

@@ -40,7 +40,7 @@ First, select first 2048 variable genes. To select variable genes, use local pol
 
 Next, use the auto encoder to reduce the dimensions from 2048 to 64. First, use min-max normalization based on the genes to normalize the data in these 2048 genes. Then, train the data in the auto encoder. The structure of the auto encoder is described as follows. In the encoder part, we have four dense layers with output dimensions 1024, 512, 128 and 64. After each dense layer, a batch normalization layer is added to speed up convergence. After the second and third dense layer, we add a dropout layer with drop out percentages set as 0.2 and 0.3. In the decoder part, we have four dense layers with output dimensions 128, 512, 1024 and 2048. After each dense layer, a batch normalization layer is added. The activation function of each layer is ReLU. In the training part, we set the loss function as MSE, the optimizer as “Adam”, the epoch to be 15 and batch size to be 128. The auto encoder is done using the`Keras` package for R.
 
-Finally, T-SNE is used to further reduce the data to two dimensions. If the user checks the "Use auto encoder result" checkbox, the application will use the output of the encoder as the input of the T-SNE algorithm, otherwise, the application will directly use the normalized data with the first 2048 variable genes. T-SNE is done using the`Multicore T-sne `R package.
+Finally, T-SNE is used to further reduce the data to two dimensions. If the user checks the "Use auto encoder result" checkbox, the application will use the output of the encoder as the input of the T-SNE algorithm, otherwise, the application will directly use the normalized data with the first 2048 variable genes. T-SNE is done using the`Rtsne ` R package.
 
 
 

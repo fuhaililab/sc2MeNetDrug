@@ -7,11 +7,37 @@ nav_order: 3
 
 # Installation
 
-Here we provide three ways to run our application. First is a standalone desktop application and the second is run the code directly on Rstudio
+Here we provide three ways to run sc2MeNetDrug. In order sc2MeNetDrug run appropriately in local machine especially for large dataset, we recommend you to use computer with at least 16G RAM(32 or more would be recommended).  
 
 ## Docker
 
-We also provide docker installation for sc2MeNetDrug. we recommend you to use Docker installation if possible. Since we set up all the environment appearpriately use docker image, so you do not worry about any environment issues that may happen during installation. For more information about docker installation, please send download request. 111
+We recommend you to use Docker installation if possible. Since we set up all the environment appearpriately use docker image, so you do not need to worry about any environment issues that may happen during installation and running. 
+
+1. If you don't have docker environment in your computer, please download docker desktop first in [Docker website](https://www.docker.com). Make sure you set up docker environment appropriately.
+
+2. Open the terminal/CMD, type following code to download sc2MeNetDrug image:
+
+   `docker pull wfrain/sc2test`
+
+3. After downloading, type following code to run the sc2MeNetDrug:
+
+   `docker run -p 5000:5000 -v $HOME:$HOME wfrain/sc2test`
+
+   Notice that we need to mount a computer directory by `-v` when using docker locally. Normally, In Mac, you can just run above code to mount local directory. If you using Windows, pleast check do you have `HOME` variable in path. Or, you can mount local directory manually using:
+
+   `docker run -p 5000:5000 -v /C/Users:/Volumes wfrain/sc2test`
+
+   This will mount local directory `/C/Users` to docker container directory `Volumes`. You can find it when you set working directory in sc2MeNetDrug.
+
+   Meanwhile, To make sure sc2MeNetDrug run appropriately, please set the memory limit and swap to the maximum value in Docker desktop(Mac):
+
+   <img src="pic/docker.png" alt="docker" style="zoom:50%;" />
+
+   Or you can set it when run the docker image:
+
+   ``docker run -p 5000:5000 -m 4096mb --memory-swap 4096mb -v /C/Users:/Volumes wfrain/sc2test`
+
+   Where `-m` is the memory limit and `--memory-swap` is the amount of memory is allowed to swap to disk.
 
 ## Desktop Application
 
