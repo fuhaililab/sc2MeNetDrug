@@ -35,7 +35,7 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
    Or you can set it when run the docker image:
 
-   ``docker run -p 5000:5000 -m 4096mb --memory-swap 4096mb -v /C/Users:/Volumes wfrain/sc2test`
+   `docker run -p 5000:5000 -m 4096mb --memory-swap 4096mb -v /C/Users:/Volumes wfrain/sc2test`
 
    Where `-m` is the memory limit and `--memory-swap` is the amount of memory is allowed to swap to disk.
 
