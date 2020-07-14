@@ -31,7 +31,7 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
    Meanwhile, To make sure sc2MeNetDrug run appropriately, please set the memory limit and swap to the maximum value in Docker desktop(Mac):
 
-   <img src="pic/docker.png" alt="docker" style="zoom:50%;" />
+   <img src="../pic/docker.png" alt="docker" style="zoom:50%;" />
 
    Or you can set it when run the docker image:
 
