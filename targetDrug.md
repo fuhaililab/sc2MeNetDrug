@@ -12,11 +12,15 @@ parent: Gene Expression, Communication and Drug Discovering
 
 You can find this analysis in the "Communication and Drug" section. Drug discovering and clustering based on targets and chemical structure analysis allows you to find potential drugs for diseases based on targets and chemical structure of drugs.
 
-This part will be computed along with the cell-cell communication portion.More information can be found here: [cell-cell communication analysis](/cell-cellCommunication.md). You don't need to do any additional operation for this analysis, just set all the parameters for the cell-cell communication and Drug Discovering and Clustering Based on Signaling Signatures, then click blue button  "Generate Communication Network and Drug" to start computation.
+This part will be computed along with the signaling communication network discovery portion. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). You don't need to do any additional operation for this analysis, just set all the parameters for the signaling communication network discovery and Drug Discovering and Clustering Based on Signaling Signatures, then click blue button  "Generate Communication Network and Drug" to start computation.
 
 <p align="center"><img src="pic/downstreamNetwork.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
-After computation, the drug discovering and clustering results will be shown after signaling signatures based drug clustering. Drug discovering is based on the result of cell-cell communication. For each communication network, there will be three results. The first is a drug network plot where the genes and edges in network are equal to cell-cell communication network. But here the size and transparency of genes indicate whether specific nodes have drug target. A larger gene size and less transparency indicate this gene has the drug target. You can view the drug list for specific gene by click the node in plot. 
+After computation, the drug discovering and clustering results will be shown after result of drug discovering and clustering based on signaling signatures. You can select to display drug discovering result for which network in here:
+
+<img src="pic/drugSelect.png" alt="drugSelect" style="zoom:50%;" />
+
+There will have two results: "Drug result of downstream network from cell type 1 to cell type 2" and "Drug result of downstream network from cell type 2 to cell type 1". Drug discovering result for each network will have one network plot shows the drugs discovering result for each genes in network, one table shows the information for each discovered drug and one plot shows the drug clustering result. For drug network plot, the nodes and links will be the same as what you see in corresponding downstream signaling network. However, the size of nodes denote whether this gene have drugs target on them. The large size denote this gene have at least one drug target on it. You can see the drugs target on specific gene by click the corresponding node in plot.
 
 <p align="center"><img src="pic/targetDrugNetwork.png" alt="targetDrugNetwork" style="zoom:67%;" /></p>
 
@@ -24,18 +28,18 @@ Below the network plot is drug summary table. The table contains all the drugs t
 
 <p align="center"><img src="pic/targetDrugTable.png" alt="targetDrugTable" style="zoom:50%;" /></p>
 
-Below drug summary table is drug clustering result.  All the nodes that link by edges are from same cluster. The text in the plot shows the name of the drug.
+Below drug summary table is drug clustering result.  All the nodes that link by edges are from same cluster. The text in the plot shows the name of the drug. Notices that if the result have more than ten clusters, we will only display first ten clusters. 
 
-<p align="center"><img src="pic/targetDrugClustering.png" alt="targetDrugClustering" style="zoom:50%;" /></p>
+<img src="pic/targetDrugClustering.png" alt="targetDrugClustering" style="zoom:50%;" />
 
 ## Data
 
 All data for drug discovering and clustering based on targets and chemical structure will be saved in "cellCommunication." For specific cell-cell combination, data is saved in the "CellType1-CellType2" directory inside "cellCommunication." Inside the "CellType1-CellType2" file, you will see:
 
-* "CellType1_CellType2": This directory saves data for drug discovering data from cell type 1 to cell type 2 communication network, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
-  * `targetDrug.RData`: Saves all the drug discovering and clustering based on target and chemical structure analysis result in list variable `targetDrug1`. The variable has four members. The first is a drug summary table for all the drugs discovered in cell type1 to cell type2 communication network. The second is drug network data saved in `.json` format. The third is an APcluster object saved APclustering result for drugs. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). The final is drug clustering result saved in `.json` format.
-* "CellType2_CellType1": This directory saves data for drug discovering data from cell type 2 to cell type 1 communication network, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
-  * `targetDrug.RData`: Saves all the drug discovering and clustering based on target and chemical structure analysis result in list variable `targetDrug2`. The variable has four members. The first is drug summary table for all the drugs discoverd in cell type2 to cell type1 communication network. The second is drug network data saved in `.json` format. The third is APcluster object saved APclustering result for drugs. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf).The final is drug clustering result saved in `.json` format.
+* "CellType1_CellType2": This directory saves data for drug discovering data of downstream signaling network from cell type 1 to cell type 2, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
+  * `targetDrug.RData`: Saves all the drug discovering and clustering based on target and chemical structure analysis result in list variable `targetDrug1`. The variable has five members. The first is a drug summary table for all the drugs discovered. The second is drug network data saved in `.json` format. The third is an APcluster object saved APclustering result for discovered drugs. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). The fourth and fifth variable are nodes and edges information of drug clustering results used for display.
+* "CellType2_CellType1": This directory saves data for drug discovering data of downstream signaling network from cell type 2 to cell type 1, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
+  * `targetDrug.RData`: Saves all the drug discovering and clustering based on target and chemical structure analysis result in list variable `targetDrug2`. The variable has five members. The first is a drug summary table for all the drugs discovered. The second is drug network data saved in `.json` format. The third is an APcluster object saved APclustering result for discovered drugs. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). The fourth and fifth variable are nodes and edges information of drug clustering results used for display.
 
 ## Methodology
 

@@ -9,31 +9,63 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find this analysis in the "Communication and Drug" section. Drug discovering and signaling signatures based clustering analysis allows you to find potential drugs for diseases based on the signaling signatures of drugs.
+You can find this analysis in the "Communication and Drug" section. Drug discovering and clustering based on signaling signatures analysis allows you to find potential drugs for diseases based on the signaling signatures of drugs.
 
-This part will be computed along with the cell-cell communication portion. More information can be found here: [cell-cell communication analysis](/cell-cellCommunication.md). Besides selecting what is needed for cell-cell communication, you need to select a number of top drugs to specify how many drug candidates you want. However, if you only want drugs that appear in the drug bank database, you can check the "Only use drug bank drug in drug discovering" check box. Next, click "Generate Communication Network and Drug" to start computation.
+This part will be computed along with the signaling communication network discovery portion. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). Besides selecting what is needed for signaling communication network discovery, you need to select a number of top drugs to specify how many drug candidates you want in drug discovering. However, if you only want drugs that appear in the drug bank database, you can check the "Only use drug bank drug in drug discovering" check box. Next, click "Generate Communication Network and Drug" to start computation.
 
 <p align="center"><img src="pic/downstreamNetwork.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
-After computation, the results will be shown below cell-cell communication with two top drug information tables and two plots. The tables show all top drugs information for cell type 1 and cell type 2 respectively. The tables have five columns. The first column shows the rank name of the drug, the second column shows the enrichment score for the drug, the third column is the name of drug and the fourth column is SMILES information for drugs, and the last column is the PubChem drug ID.
+After computation, the results will be shown below network plot. You can select to display drug discovering result for which network in here:
 
-<p align="center"><img src="pic/signalDrugTable.png" alt="signalDrugTable" style="zoom:80%;" /></p>
+<img src="pic/drugSelect.png" alt="drugSelect" style="zoom:50%;" />
 
-Below the tables is the drug clustering result plot. All the nodes that link by edges are from same cluster. The text in the plot shows the name of the drug and the corresponding enrichment score.
+There will have two results: "Drug result of downstream network from cell type 1 to cell type 2" and "Drug result of downstream network from cell type 2 to cell type 1". Drug discovering result for each network will have one table shows the information for each discovered drug and a plot shows the drug clustering result. The table will have five columns. The first column is rank name in CMAP data. The second column is the enrichment score for each drug. The third column is the drug name. The fourth column is the SMILE information of drug and the final column is the pubchem id for drug. 
+
+<img src="pic/signalDrugTable.png" alt="signalDrugTable" style="zoom:50%;" />
+
+The drug clustering result plot is show below the table. All the nodes that link by edges are from same cluster. The text in the plot shows the name of the drug and the corresponding enrichment score. Notices that if the result have more than ten clusters, we will only display first ten clusters. 
 
 <p align="center"><img src="pic/drugClustering.png" alt="drugClustering" style="zoom:67%;" /></p>
 
 ## Data
 
-All data for drug discovering based on signaling signatures will be saved in "cellCommunication." For specific cell-cell combination, data is saved in the "CellType1-CellType2" directory inside "cellCommunication." Inside the "CellType1-CellType2" file, you will see:
+All data for drug discovering based on signaling signatures will be saved in "cellCommunication" directory. For specific cell-cell combination, data is saved in the "CellType1-CellType2" directory inside "cellCommunication." Inside the "CellType1-CellType2" file, you will see:
 
-`drugData.RData`: Saves all the drug discovering and clustering based on signaling signatures analysis results in list variable `drug_discover`. The list have six members. the first and second are drug information tables for cell type1 and cell type2. The third and fourth are APcluster objects that save APclustering result for drugs of cell type1 and cell type2. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). The last two columns are drug clustering result for drugs of cell type1 and cell type2 saved in `.json` format.
+* "CellType1_CellType2": This directory saves data for drug discovering data of downstream signaling network from cell type 1 to cell type 2, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
+
+  * `signalingDrug.RData`: Saves all the drug discovering and clustering results in variable `signalingDrug1`. The variable is a list. The first variable in list is drug table saves all the information for discovered drugs. The second variable in list is APCluster object saves APclustering results of discovered drugs. The third and fourth variable are nodes and edges information of drug clustering results used for display. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). You can access them by following codes:
+
+    ```R
+    drug_table1<-signalingDrug1[[1]]
+    
+    drug_clustering_result1<-signalinDrug1[[2]]
+    
+    drug_clustering_nodes1<-signalingDrug1[[3]]
+    
+    drug_clustering_edges1<-signalingDrug1[[4]]
+    ```
+
+* "CellType2_CellType1": This directory saves data for drug discovering data of downstream signaling network from cell type 2 to cell type 1, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
+
+  * `signalingDrug.RData`: Saves all the drug discovering and clustering results in variable `signalingDrug2`. The variable is a list. The first variable in list is drug table saves all the information for discovered drugs. The second variable in list is APCluster object saves APclustering results of discovered drugs. The third and fourth variable are nodes and edges information of drug clustering results used for display. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). You can access them by following codes:
+
+    ```R
+    drug_table2<-signalingDrug2[[1]]
+    
+    drug_clustering_result2<-signalinDrug2[[2]]
+    
+    drug_clustering_nodes2<-signalingDrug2[[3]]
+    
+    drug_clustering_edges2<-signalingDrug2[[4]]
+    ```
+
+    
 
 ## Methodology
 
 ### Drug Discovering
 
-After we get up-regulated genes for each of the two cell types in the cell-cell communication analysis, sc2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each cell type. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, the application will compute an enrichment score of the up-regulated gene set for each drug in each cell type using the drug rank matrix. Then, the top K drugs with the lowest enrichment scores would be selected as potential drugs, where K is the number of top drugs.
+After we get up-regulated genes for each of the two cell types in the cell-cell communication analysis, sc2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each cell type. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, for specific downstream signaling network, all the genes in the network will be selected as target gene set. Then, the enrichment score of each drugs in drugs rank database target on the target gene set will be computed using GSEA. Then, the top K drugs with the lowest enrichment scores would be selected as potential drugs, where K is the number of top drugs.
 
 ### Drug Clustering
 
