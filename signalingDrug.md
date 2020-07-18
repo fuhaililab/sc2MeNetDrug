@@ -13,7 +13,7 @@ You can find this analysis in the "Communication and Drug" section. Drug discove
 
 This part will be computed along with the signaling communication network discovery portion. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). Besides selecting what is needed for signaling communication network discovery, you need to select a number of top drugs to specify how many drug candidates you want in drug discovering. However, if you only want drugs that appear in the drug bank database, you can check the "Only use drug bank drug in drug discovering" check box. Next, click "Generate Communication Network and Drug" to start computation.
 
-<p align="center"><img src="pic/downstreamNetwork.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
+<p align="center"><img src="pic/downstreamNetworkPanel.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
 After computation, the results will be shown below network plot. You can select to display drug discovering result for which network in here:
 

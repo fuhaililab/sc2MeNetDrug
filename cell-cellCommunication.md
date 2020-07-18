@@ -15,7 +15,7 @@ First, you need to choose which two cell types you want to analyze as well as th
 
 The "Only use drug bank drug in drug discovering" check box is related to the drug discovering part. You can find more information in [Drug discovering](signalingDrug.md).
 
-<p align="center"><img src="pic/downstreamNetwork.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
+<p align="center"><img src="pic/downstreamNetworkPanel.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
 After computation, you can see the gene expression information table on the right. There are four tables that show ligand and receptor information for both two cell types. You can select certain tables to be displayed on the top. Each table contains five columns. The first is the log fold change, the second and third columns are expression percentages in the test and control groups respectively, the fourth columns is the Wilcoxon rank sum test adjusted p-values, and the fifth column is bimod test adjusted p-values based on the Bonferroni correction.
 

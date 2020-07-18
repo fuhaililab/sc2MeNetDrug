@@ -7,7 +7,7 @@ nav_order: 3
 
 # Installation
 
-Here we provide three ways to run sc2MeNetDrug. In order sc2MeNetDrug run appropriately in local machine especially for large dataset, we recommend you to use computer with at least 16G RAM(32 or more would be recommended).  
+Here we provide three ways to run sc2MeNetDrug. Typically, sc2MeNetDrug will consume large memory during running if the size of scRNA-seq data is large. Regrad the normal size of scRNA-seq data, we suggest you to use the computer with at least 16RAM(32 or more is recommended)
 
 ## Docker
 
@@ -43,11 +43,11 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
 ### Prerequisite
 
-In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA environment** installed in your system. If you haven't install it yet, you can find it in [JAVA Website](https://www.java.com/). Meanwhile, you need have **Python environment** and **tensorflow package** installed in your system. If you haven't install it yet, we would recommend you to install Python through anaconda. You can find it in [Anaconda](https://www.anaconda.com), then install tensorflow package through by `pip install tensorflow` in terminal.
+In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA environment** installed in your system. If you haven't install it yet, you can find it in [JAVA Website](https://www.java.com/). Meanwhile, you need have **Python environment** and **tensorflow package** installed in your **default Python environment**. If you haven't install it yet, we would recommend you to install Python through anaconda. You can find it in [Anaconda](https://www.anaconda.com), then install tensorflow package through by `pip install tensorflow` in terminal. The default Python environment refers to the Python environment that list in environment path. This is very important especially when your computer have more than one python environment.
 
 ### For Mac
 
-1. Download the `.dmg` file from Github.
+1. Download the `.dmg` file from link.
 
 2. Open the `.dmg` file and drag sc2MeNetDrug application to the desired location.
 

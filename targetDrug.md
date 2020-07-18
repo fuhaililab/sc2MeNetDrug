@@ -14,7 +14,7 @@ You can find this analysis in the "Communication and Drug" section. Drug discove
 
 This part will be computed along with the signaling communication network discovery portion. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). You don't need to do any additional operation for this analysis, just set all the parameters for the signaling communication network discovery and Drug Discovering and Clustering Based on Signaling Signatures, then click blue button  "Generate Communication Network and Drug" to start computation.
 
-<p align="center"><img src="pic/downstreamNetwork.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
+<p align="center"><img src="pic/downstreamNetworkPanel.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
 After computation, the drug discovering and clustering results will be shown after result of drug discovering and clustering based on signaling signatures. You can select to display drug discovering result for which network in here:
 
