@@ -78,4 +78,20 @@ First, you need to go to the[NCBI website](https://www.ncbi.nlm.nih.gov/geo/quer
 * `GSE92742_Broad_LINCS_sig_info.txt.gz`
 * `GSE92742_Broad_LINCS_pert_info.txt.gz`
 
-Next, put all data files into one directory. Unzip the data files to create .txt or .gctx files from the .gz formatted files. Open sc2MeNetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should unlock cell-cell communication and drug discovering analyses. if not, you can try click "load data" button in "Gene Expression" section or reopen the sc2MeNetDrug. **You don't need to process data twice even if you restart the application or change the working directory**. 
+Next, put all data files into one directory. Unzip the data files to create .txt or .gctx files from the .gz formatted files. Open sc2MeNetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should unlock cell-cell communication and drug discovering analyses. if not, you can try click "load data" button in "Gene Expression" section or reopen the sc2MeNetDrug. 
+
+We recommend you to process drug file before you load data into sc2MeNetDrug, cause the process will consume large memory and may run out of memory if your computer's memory is not enough.
+
+In Windows or Mac version, **You don't need to process data twice even if you restart the application or change the working directory cause the processed file has already saved**. But in docker container, to appropriately save processed file, you need to commit the change in container and build a new local image. To do that, after drug file processing finish, close the docker container and run following code in terminal:
+
+```
+docker ps -l
+```
+
+Then, you will see all the containers that have changed. Find the sc2MeNetDrug and corresponding `CONTAINER ID`. Next, run following code in terminal:
+
+```
+docker commit CONTAINER_ID wfrain/sc2test
+```
+
+Where `CONTAINER_ID` is the container id you find. 
