@@ -19,6 +19,8 @@ To set a working directory, first click the grey button "Select Working Director
 
 Then, the above interface should be displayed and you can click the directory you want to choose on the left side. After you choose a directory, click "Select". Finally, click the blue button "Set Working Directory" to change the working directory in the application. Once you see the directory you choose displayed in application, you have successfully set the directory. Notice that after you set or reset the directory, all the previous data and results loaded in the application will be unloaded and the whole application will be reinitialized. 
 
+In docker version, the docker environment will be show in default. But you can find the mount directory of you local computer in the directory list once you run the docker version with local directory mounting. For more information, please see [docker installation](./installation.md)
+
 ## Upload Data
 
  After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you don't have cell annotation results, you should upload your data in the "Upstream analysis" part. RNA-seq read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your dataset, you should check the "Header" checkbox below "Choose your group or design file". Notice that we only accept files with sizes less than 5GB.
