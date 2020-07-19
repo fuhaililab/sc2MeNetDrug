@@ -57,7 +57,7 @@ Then, soft threshold is applied by using K-means clustering algorithm to cluster
 
 ### Normalization
 
-To normalize scRNA-seq read count data, the read count value for gene \(X​\) in one cell sample must be scaled using the following expression:
+To normalize scRNA-seq read count data, the read count value for gene \\(X​\\) in one cell sample must be scaled using the following expression:
 
 \\[\text{scaled expression for gene X}=\frac{\text{Read count for gene X} }{\text{Total count of cell sample}}\times10000\\]
 
