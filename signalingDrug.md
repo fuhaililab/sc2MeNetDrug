@@ -9,7 +9,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find this analysis in the "Communication and Drug" section. Drug discovering and clustering based on signaling signatures analysis allows you to find potential drugs for diseases based on the signaling signatures of drugs.
+You can find this analysis in the "Communication and Drug" section. Drug discovering and clustering based on signaling signatures analysis allows you to find potential drugs to inhibit signaling communication network based on the signaling signatures of drugs.
 
 This part will be computed along with the signaling communication network discovery portion. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). Besides selecting what is needed for signaling communication network discovery, you need to select a number of top drugs to specify how many drug candidates you want in drug discovering. However, if you only want drugs that appear in the drug bank database, you can check the "Only use drug bank drug in drug discovering" check box. Next, click "Generate Communication Network and Drug" to start computation.
 
@@ -37,11 +37,8 @@ All data for drug discovering based on signaling signatures will be saved in "ce
 
     ```R
     drug_table1<-signalingDrug1[[1]]
-    
     drug_clustering_result1<-signalinDrug1[[2]]
-    
     drug_clustering_nodes1<-signalingDrug1[[3]]
-    
     drug_clustering_edges1<-signalingDrug1[[4]]
     ```
 
@@ -51,11 +48,8 @@ All data for drug discovering based on signaling signatures will be saved in "ce
 
     ```R
     drug_table2<-signalingDrug2[[1]]
-    
     drug_clustering_result2<-signalinDrug2[[2]]
-    
     drug_clustering_nodes2<-signalingDrug2[[3]]
-    
     drug_clustering_edges2<-signalingDrug2[[4]]
     ```
 
@@ -65,11 +59,11 @@ All data for drug discovering based on signaling signatures will be saved in "ce
 
 ### Drug Discovering
 
-After we get up-regulated genes for each of the two cell types in the cell-cell communication analysis, sc2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each cell type. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, for specific downstream signaling network, all the genes in the network will be selected as target gene set. Then, the enrichment score of each drugs in drugs rank database target on the target gene set will be computed using GSEA. Then, the top K drugs with the lowest enrichment scores would be selected as potential drugs, where K is the number of top drugs.
+After we get up-regulated genes for each of the two cell types in the signaling communication network analysis, sc2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each network. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, for specific downstream signaling network, all the genes in the network will be selected as target gene set. Then, the enrichment score of each drugs in drugs rank database target on the target gene set will be computed using GSEA. Then, the top \(K\) drugs with the lowest enrichment scores would be selected as potential drugs, where \(K\) is the number of top drugs.
 
 ### Drug Clustering
 
-After the top drug is found, the Affinity Propagation Clustering (AP clustering)<sup>1</sup> will be used to cluster drugs found in the drug discovering analysis. First, a similarity matrix for top drugs is constructed. If the number of top drugs is K, then the dimensions of the matrix will be $K \times K$. The similarity score for drug $i$ to drug $j$ is found by the following steps. Select the top 150 up-regulated genes and top 150 down-regulated genes for drug $i$ as the gene set. Then, compute the GSEA score for drug $j$ using the drug rank matrix and gene set from drug $i$. Then, the enrichment score will be used as the similarity score for drug $i$ to drug $j$. After constructing a similarity matrix, it is used to do AP clustering. AP clustering is done using the R package `apcluster` .
+After the top drug is found, the Affinity Propagation Clustering (AP clustering)<sup>1</sup> will be used to cluster drugs found in the drug discovering analysis. First, a similarity matrix for top drugs is constructed. If the number of top drugs is K, then the dimensions of the matrix will be \(K \times K​\). The similarity score for drug ​\(​i\) to drug \(j\) is computed by the following steps. Select the top 150 up-regulated genes and top 150 down-regulated genes for drug \(i​\) as the gene set. Then, compute the GSEA score for drug \(j​\) using the drug rank matrix and gene set from drug \(i​\). Then, the enrichment score will be used as the similarity score for drug \(i​\) to drug \(j​\). After constructing a similarity matrix, it is used to do AP clustering. AP clustering is done using the R package `apcluster` .
 
 
 

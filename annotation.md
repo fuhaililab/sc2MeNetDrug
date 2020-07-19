@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Cell annotation
+title: Cell Annotation
 permalink: /annotation/
 nav_order: 9
 ---
 
-# Cell annotation
+# Cell Annotation
 
 ## Introduction
 
@@ -13,13 +13,13 @@ This part is only available after you upload data in the "Upstream analysis Data
 
 <p align="center"><img src="../pic/cellTypeSelect.png" alt="cellTypeSelect" style="zoom:40%;" /></p>
 
-The cell type for each cell will only be chosen for the cell type you selected. We also provide common cell type combinations for Alzheimer's disease and Pancreatic cancer, and you can use it directly by clicking the blue buttons labeled "Alzheimer's disease" or "Pancreatic cancer".
+The cell type for each cell will only be chosen from the cell type you selected. We also provide common cell type combinations for Alzheimer's disease and Pancreatic cancer, and you can use it directly by clicking the blue buttons labeled "Alzheimer's disease" or "Pancreatic cancer".
 
 After you select the cell type list, you can click the blue button "Cell Annotation" in the cell annotation section. Meanwhile, you can choose to use main clustering results or sub-clustering results to do cell annotation by checking or unchecking the "Use sub-clustering result" check box.
 
 <p align="center"><img src="../pic/annotation.png" alt="annotation" style="zoom:50%;" /></p>
 
-After computation, you can see the results of annotation in :
+After computation, you can see the results of cell annotation in :
 
 <p align="center"><img src="../pic/annotationResult.png" alt="annotationResult" style="zoom:80%;" /></p>
 
@@ -37,7 +37,7 @@ After cell annotation, you will get three `.RData` files in your working directo
 
 ## Methodology
 
-Cell annotation in sc2MeNetDrug is computed using Gene Set Enrichment Analysis (GSEA)<sup>1</sup>. After the user selects candidate cell types in the "Biomarker Gene" section and starts computation, the application will compute the log fold change for cluster $N$ using the following formula:
+Cell annotation in sc2MeNetDrug is computed using Gene Set Enrichment Analysis (GSEA)<sup>1</sup>. After the user selects candidate cell types in the "Biomarker Gene" section and starts computation, the application will compute the log fold change for cluster \(N​\) using the following formula:
 \\[\text{log fold change for cluster N}=\text{mean expression for cluster N}-{\text{mean expression for other cells}}\\]
 
 Then we order the genes based on log fold changes as genes rank and compute enrichment scores of marker gene sets for each candidate cell type. Finally, the cell type with the largest enrichment score will be selected as the type of this cluster. However, if none of the cell types have a positive enrichment score, the cluster will be annotated as unknown. 

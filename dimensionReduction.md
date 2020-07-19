@@ -15,7 +15,7 @@ This part will only be avaliable after you upload data in the "Upstream analysis
   <img src="../pic/ae.png" alt="ae" style="zoom:50%;" />
   </p>
 
-First, click the blue button "Auto Encoder" to train the auto encoder.Then, select parameters in the T-SNE panel and perform the T-SNE computation. Notice that you can also skip the auto encoder and directly perform T-SNE. If you want to T-SNE directly, you can uncheck the "Use auto encoder result" check box.
+First, click the blue button "Auto Encoder" to train the auto encoder.Then, select parameters in the T-SNE panel and perform the T-SNE computation. Notice that you can also skip the auto encoder and directly perform T-SNE. If you want to do T-SNE directly, you can uncheck the "Use auto encoder result" check box.
 
 "Maximum iteration time" controls the maximum iteration time of the algorithm. "Perplexity number" controls the number of close neighbors each point has in algorithm assumption. 
 
@@ -36,11 +36,11 @@ After dimension reduction, you will receive two `.RData` files in your working d
 
 Dimension reduction analysis in sc2MeNetDrug involves several steps:
 
-First, select first 2048 variable genes. To select variable genes, use local polynomial regression to fit the relationship of log(variance) and log(mean). Then, standardize the gene expression values using the observed mean and expected variance (given by the fitted line). Gene expression variance is then calculated on the standardized values after clipping. This is done by `FindVariableFeatures` with `selection.method` set as `"vst"` in the`Seurat` package<sup>[1]</sup>.
+First, select first 2048 variable genes. To select variable genes, local polynomial regression is used to fit the relationship of log(variance) and log(mean). Then, standardize the gene expression values using the observed mean and expected variance (given by the fitted line). Gene expression variance is then calculated on the standardized values after clipping. This is done by `FindVariableFeatures` with `selection.method` set as `"vst"` in the`Seurat` package<sup>[1]</sup>.
 
 Next, use the auto encoder to reduce the dimensions from 2048 to 64. First, use min-max normalization based on the genes to normalize the data in these 2048 genes. Then, train the data in the auto encoder. The structure of the auto encoder is described as follows. In the encoder part, we have four dense layers with output dimensions 1024, 512, 128 and 64. After each dense layer, a batch normalization layer is added to speed up convergence. After the second and third dense layer, we add a dropout layer with drop out percentages set as 0.2 and 0.3. In the decoder part, we have four dense layers with output dimensions 128, 512, 1024 and 2048. After each dense layer, a batch normalization layer is added. The activation function of each layer is ReLU. In the training part, we set the loss function as MSE, the optimizer as “Adam”, the epoch to be 15 and batch size to be 128. The auto encoder is done using the`Keras` package for R.
 
-Finally, T-SNE is used to further reduce the data to two dimensions. If the user checks the "Use auto encoder result" checkbox, the application will use the output of the encoder as the input of the T-SNE algorithm, otherwise, the application will directly use the normalized data with the first 2048 variable genes. T-SNE is done using the`Rtsne ` R package.
+Finally, T-SNE is used to further reduce the data to two dimensions. If the user checks the "Use auto encoder result" checkbox, the application will use the output of the encoder as the input of the T-SNE algorithm, otherwise, the application will directly use the normalized data with the first 2048 variable genes. T-SNE is done using the`Rtsne` R package.
 
 
 

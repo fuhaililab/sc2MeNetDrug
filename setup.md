@@ -17,9 +17,7 @@ You can then select a ligand-receptor interactions database. Currently, we provi
 
 Notice that in order to do cell-cell communication and drug discovering analyses, you must download drug data and perform preprocessing in the application, you can find more information about this in [Working Directory Setting and Data Uploading](data.md).
 
-Meanwhile, in order to do a differentially expressed genes test in some analyses, we will set design information for a`Seurat` object after cell annotation for "Upstream analysis data" or a `Seurat` object after preprocessing for "Downstream analysis data". 
-
-If you upload group or design information, the design information set for the`Seurat` object is the combination of group and cell type. For example, if the cell belongs to "group1" and "Endothelial", the design information in `Seurat` object will be "Endothelial_group1". If you do not upload group or design information, the design information in the`Seurat` object will simply be cell type for each cell.
+Meanwhile, in order to do a differentially expressed genes test in some analyses, we will set design information for a `Seurat` object after cell annotation for "Upstream analysis data" or a `Seurat` object after preprocessing for "Downstream analysis data". If you upload group or design information, the design information set for the`Seurat` object is the combination of group and cell type. For example, if the cell belongs to "group1" and "Endothelial", the design information in `Seurat` object will be "Endothelial_group1". If you do not upload group or design information, the design information in the`Seurat` object will simply be cell type for each cell.
 
 For "upstream analysis data", the `rna_df.RData`  will be refreshed after cell annotation. You can load data and obtain design information by:
 

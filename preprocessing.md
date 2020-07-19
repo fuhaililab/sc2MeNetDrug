@@ -21,7 +21,7 @@ If you want to do imputation, check the "imputation" checkbox. If the RNA-seq da
 
 After preprocessing, you will see at least two `.RData` files in your working directory. If you upload data in the "Upstream Analysis data" part, you will have:
 
-* `rna_df.RData`: Saves the read count data in a Seurat object after preprocessing. The name of variable is `seurat_data`.  Data in matrix format from the Seurat object can be obtained through:
+* `rna_df.RData`: Saves the read count data in a Seurat object after preprocessing. The name of variable is `seurat_data`.  Data in matrix format can be obtained from the Seurat object through:
 
   ```R
   #If you don't do imputation in preprocessing
@@ -57,7 +57,7 @@ Then, soft threshold is applied by using K-means clustering algorithm to cluster
 
 ### Normalization
 
-To normalize scRNA-seq read count data, the read count value for gene $X$ in one cell sample must be scaled using the following expression:
+To normalize scRNA-seq read count data, the read count value for gene \(X​\) in one cell sample must be scaled using the following expression:
 
 \\[\text{scaled expression for gene X}=\frac{\text{Read count for gene X} }{\text{Total count of cell sample}}\times10000\\]
 

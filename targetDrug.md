@@ -10,7 +10,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find this analysis in the "Communication and Drug" section. Drug discovering and clustering based on targets and chemical structure analysis allows you to find potential drugs for diseases based on targets and chemical structure of drugs.
+You can find this analysis in the "Communication and Drug" section. Drug discovering and clustering based on targets and chemical structure analysis allows you to find potential drugs to inhibit signaling communication network based on targets and chemical structure of drugs.
 
 This part will be computed along with the signaling communication network discovery portion. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). You don't need to do any additional operation for this analysis, just set all the parameters for the signaling communication network discovery and Drug Discovering and Clustering Based on Signaling Signatures, then click blue button  "Generate Communication Network and Drug" to start computation.
 
@@ -20,7 +20,7 @@ After computation, the drug discovering and clustering results will be shown aft
 
 <img src="pic/drugSelect.png" alt="drugSelect" style="zoom:50%;" />
 
-There will have two results: "Drug result of downstream network from cell type 1 to cell type 2" and "Drug result of downstream network from cell type 2 to cell type 1". Drug discovering result for each network will have one network plot shows the drugs discovering result for each genes in network, one table shows the information for each discovered drug and one plot shows the drug clustering result. For drug network plot, the nodes and links will be the same as what you see in corresponding downstream signaling network. However, the size of nodes denote whether this gene have drugs target on them. The large size denote this gene have at least one drug target on it. You can see the drugs target on specific gene by click the corresponding node in plot.
+There will have two results: "Drug result of downstream network from cell type 1 to cell type 2" and "Drug result of downstream network from cell type 2 to cell type 1". Drug discovering result for each network will have one network plot shows the drugs discovering result for each genes in network, one table shows the information for each discovered drug and one plot shows the drug clustering result. For drug network plot, the nodes and links will be the same as what you see in corresponding downstream signaling network. However, the size of nodes represent whether this gene have drugs target on them. The big size represent this gene have at least one drug target on it. You can see the drugs target on specific gene by click the corresponding node in plot.
 
 <p align="center"><img src="pic/targetDrugNetwork.png" alt="targetDrugNetwork" style="zoom:67%;" /></p>
 

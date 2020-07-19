@@ -9,7 +9,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find the upstream network analysis in the "Gene Expression" section. Upstream network analysis allows you to find up-regulated ligands and receptors for certain design or test conditions and generate a ligand-receptor intercation network based on the ligand-receptor intercation database. For choosing a ligand-receptor intercation database, see [Set up](/setup.md).
+You can find the upstream network analysis in the "Gene Expression" section. Upstream network analysis allows you to find up-regulated ligands and receptors for certain design or test conditions and generate a ligand-receptor intercation network based on the ligand-receptor intercation database. For choosing a ligand-receptor intercation database, please see [Set up](/setup.md).
 
 <p align="center"><img src="pic/upstreamNetworkAnalysis.png" alt="upstreamNetworkAnalysis" style="zoom:50%;" /></p>
 
@@ -27,7 +27,7 @@ In the up-regulated ligands and receptors plot, all the cells that don't have up
 
 ## Data
 
-All the data for upstream network analysis is saved in the "upRegulatedLigandsReceptors" directory within the working directory. Inside the directory, each group combinations has their own directory to save results. For example, if your test group is named "test" and control group is named "control", the results will be saved in the directory as *control-test*. If you have more than one group in the test or control, like "test1" and "test2" in the test group and "control1" and "control2" in the control group, the directory will be named as *test1+test2-control1+control2*.  **We only save the latest result for each group combination**, please be careful. If you don't upload group information, the results will save in the "noGroup" directory.
+All the data for upstream network analysis is saved in the "upRegulatedLigandsReceptors" directory within the working directory. Inside the directory, each group combinations has their own directory to save results. For example, if your test group is named "test" and control group is named "control", the results will be saved in the directory as *control-test*. If you select more than one group in the test or control, like "test1" and "test2" in the test group and "control1" and "control2" in the control group, the directory will be named as *test1+test2-control1+control2*.  **We only save the latest result for each group combination**, please be careful. If you don't upload group information, the results will save in the "noGroup" directory.
 
 Inside the group directory, you will see three files:
 
@@ -91,7 +91,7 @@ Inside the group directory, you will see three files:
 
 Upstream network analysis in sc2MeNetDrug is done in several steps: 
 
-First, differentially expressed genes in the test or design group for each cell type are based on two tests, the first being the Wilcoxon rank sum test and the second being the Likelihood-ratio test<sup>1</sup>. The genes that have log fold change values larger than the threshold and adjusted p-values for both tests less than the threshold will be selected as differentially expressed genes. The tests are done by the `FindMarkers` function in the `Seurat` package with parameters set as `test.use="wilcox"` and `test.use="bimod"` for the two tests respectively.
+First, differentially expressed genes in the test or design group for each cell type are obtained based on two tests, the first being the Wilcoxon rank sum test and the second being the Likelihood-ratio test<sup>1</sup>. The genes that have log fold change values larger than the threshold and adjusted p-values for both tests less than the threshold will be selected as differentially expressed genes. The tests are done by the `FindMarkers` function in the `Seurat` package with parameters set as `test.use="wilcox"` and `test.use="bimod"` for the two tests respectively.
 
 After obtaining the differentially expressed genes for all cell types in the data set based on the test or design group the user chose, ligands and receptors are found by searching for all differentially expressed genes that are in the ligands or receptors list in our ligands-receptors database. 
 
