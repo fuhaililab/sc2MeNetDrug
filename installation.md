@@ -17,15 +17,15 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
 2. Open the terminal/CMD, type following code to download sc2MeNetDrug image:
 
-   `docker pull wfrain/sc2test`
+   `docker pull wfrain/sc2MeNetDrug`
 
 3. After downloading, type following code to run the sc2MeNetDrug:
 
-   `docker run -p 5000:5000 -v $HOME:$HOME wfrain/sc2test`
+   `docker run -p 5000:5000 -v $HOME:$HOME wfrain/sc2MeNetDrug`
 
    Notice that we need to mount a computer directory by `-v` when using docker locally. Normally, In Mac, you can just run above code to mount local directory. If you using Windows, pleast check do you have `HOME` variable in path. Or, you can mount local directory manually using:
 
-   `docker run -p 5000:5000 -v /C/Users:/Volumes wfrain/sc2test`
+   `docker run -p 5000:5000 -v /C/Users:/Volumes wfrain/sc2MeNetDrug`
 
    This will mount local directory `/C/Users` to docker container directory `Volumes`. You can find it when you set working directory in sc2MeNetDrug.
 
@@ -35,7 +35,7 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
    Or you can set it when run the docker image:
 
-   `docker run -p 5000:5000 -m 4096mb --memory-swap 4096mb -v /C/Users:/Volumes wfrain/sc2test`
+   `docker run -p 5000:5000 -m 4096mb --memory-swap 4096mb -v /C/Users:/Volumes wfrain/sc2MeNetDrug`
 
    Where `-m` is the memory limit and `--memory-swap` is the amount of memory is allowed to swap to disk.
 
@@ -67,12 +67,4 @@ In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA en
 2. Unzip it and put it to the desired location.
 3. Find `sc2MeNetDrug.exe` and click it to open application.
 
-## Rstudio
-
-If the latest version or more control on what is going on in application are desired, you can also download source code on Github and run it in Rstudio:
-
-1. Download the source code file from Github.
-
-2. Install all third-party packages in `denpendencies.R`. We provide code for you to download these packages. 
-
-3. After all required packages are downloaded, open the `ui.R` or `server.R` and click `Run App` on the top right.
+3. 

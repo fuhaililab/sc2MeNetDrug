@@ -1,5 +1,5 @@
 ---
-layout: default
+ layout: default
 title: Clustering
 permalink: /Clustering/
 nav_order: 7

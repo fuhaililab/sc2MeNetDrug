@@ -27,7 +27,7 @@ After preprocessing, you will see at least two `.RData` files in your working di
   #If you don't do imputation in preprocessing
   seurat_data[["RNA"]]@data
   #If you do imputation in preprocessing
-  seurat_data[["ALRA"]]@data
+  seurat_data[["alra"]]@data
   #if you are not sure which one, you can just call
   seurat_data[[seurat_data@active.assay]]@data
   ```

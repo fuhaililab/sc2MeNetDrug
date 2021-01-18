@@ -13,8 +13,7 @@ nav_order: 2
 In order to download S2CNetDrug, please fill the form below. Then we will send download link to your email.
 
 <div class="container">  
-  <form id="contact"   action="https://formspree.io/mrgykwal"
-  method="POST">
+  <form id="contact"    action="https://formspree.io/f/meqpnqgj" method="POST">
     <h3>sc2MeNetDrug Download Request Form</h3>
     <fieldset>
       <input name="name" placeholder="Your name" type="text" tabindex="1" required autofocus>
@@ -30,7 +29,7 @@ In order to download S2CNetDrug, please fill the form below. Then we will send d
       <select name="Download Version" id="exampleFormControlSelect1"  required="required">
         <option>Windows Application</option>
         <option>Mac Application</option>
-        <option>Rstudio Version</option>
+        <option>Docker Version</option>
       </select>
     </filedset>
     <filedset>
@@ -40,4 +39,5 @@ In order to download S2CNetDrug, please fill the form below. Then we will send d
     </fieldset>
   </form>
 </div>
+
 
