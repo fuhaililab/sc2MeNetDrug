@@ -43,6 +43,11 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
 ### Prerequisite
 
+```
+Important
+{: .label .label-red }
+```
+
 In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA environment** installed in your system. If you haven't install it yet, you can find it in [JAVA Website](https://www.java.com/). Meanwhile, you need have **Python environment** and **tensorflow package** installed in your **default Python environment**. If you haven't install it yet, we would recommend you to install Python through anaconda. You can find it in [Anaconda](https://www.anaconda.com), then install tensorflow package through by `pip install tensorflow` in terminal. The default Python environment refers to the Python environment that list in environment path. This is very important especially when your computer have more than one python environment.
 
 ### For Mac
