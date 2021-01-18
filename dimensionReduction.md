@@ -7,6 +7,14 @@ nav_order: 6
 
 # Dimension Reduction
 
+## Table of contents
+
+{: .no_toc .text-delta }
+
+{:toc}
+
+
+
 ## Introduction
 
 This part will only be avaliable after you upload data in the "Upstream analysis Data" part and finish preprocessing. Dimension reduction allows you to reduce high dimensional scRNA-seq data to low dimensional space for visualization and further analysis.
