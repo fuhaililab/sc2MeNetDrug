@@ -9,3 +9,5 @@ aux_links_new_tab: true
 markdown: kramdown
 color_scheme: green
 logo: "/pic/sc2MeNetDrug.png"
+ga_tracking: G-W3VSLFBJ1M
+ga_tracking_anonymize_ip: true
