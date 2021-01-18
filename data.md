@@ -7,13 +7,6 @@ nav_order: 4
 
 # Working Directory and Data Upload
 
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-{:toc}
-
 ## Set Working Directory
 
 <p align="center"><img src="../pic/workingDir.png" alt="workingDir" style="zoom:50%;" /></p>
