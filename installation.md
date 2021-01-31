@@ -76,7 +76,5 @@ In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA en
 
 ## Video Demonstration
 
-```html
 <iframe width="420" height="315" src="https://www.youtube.com/watch?v=q1BFcl_cdAk" frameborder="0" allowfullscreen></iframe>
-```
 
