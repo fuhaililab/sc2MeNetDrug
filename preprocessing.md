@@ -9,7 +9,7 @@ nav_order: 5
 
 ## Introduction
 
-Once the required data has been successfully uploaded, the preprocessing analysis can be performed. Preprocessing allows you to do quality control, normalization, and imputation for the read count data set. Imputation is an optional step in preprocessing as it takes much longer than other steps, but it is recommended because it gives more reasonable results in following analyses. Note that **if you have a group or design file, you should upload it before performing preprocessing.** 
+Once the required data has been successfully uploaded, the preprocessing analysis can be performed. Preprocessing allows you to do quality control, normalization, and imputation for the read count data set. Imputation is an optional step in preprocessing as it takes much longer than other steps, but it is recommended because it gives more reasonable results in following analyses (The imputation will consume large amount of memory and cause out-of memory error when your machine has limited memory resources). Note that **if you have a group or design file, you should upload it before performing preprocessing.** 
 
 <p align="center"><img src="../pic/preprocessing.png" alt="preprocessing" style="zoom:50%;" /></p>
 
