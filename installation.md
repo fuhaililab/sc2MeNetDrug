@@ -71,3 +71,12 @@ In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA en
 1. Download the `zip ` file from Github.
 2. Unzip it and put it to the desired location.
 3. Find `sc2MeNetDrug.exe` and click it to open application.
+
+
+
+## Video Demonstration
+
+```html
+<iframe width="420" height="315" src="https://www.youtube.com/watch?v=q1BFcl_cdAk" frameborder="0" allowfullscreen></iframe>
+```
+
