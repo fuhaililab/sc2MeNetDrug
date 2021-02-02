@@ -95,7 +95,7 @@ docker ps -l
 Then, you will see all the containers that have changed. Find the sc2MeNetDrug and corresponding `CONTAINER ID`. Next, run following code in terminal:
 
 ```
-docker commit CONTAINER_ID wfrain/sc2test
+docker commit CONTAINER_ID fuhaililab/sc2menetdrug
 ```
 
 Where `CONTAINER_ID` is the container id you find. 

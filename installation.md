@@ -17,15 +17,15 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
 2. Open the terminal/CMD, type following code to download sc2MeNetDrug image:
 
-   `docker pull wfrain/sc2menetdrug`
+   `docker pull fuhaililab/sc2menetdrug`
 
 3. After downloading, type following code to run the sc2MeNetDrug:
 
-   `docker run -p 5000:5000 -v $HOME:$HOME wfrain/sc2menetdrug`
+   `docker run -p 5000:5000 -v $HOME:$HOME fuhaililab/sc2menetdrug`
 
    Notice that we need to mount a computer directory by `-v` when using docker locally. Normally, In Mac, you can just run above code to mount local directory. If you using Windows, pleast check do you have `HOME` variable in path. Or, you can mount local directory manually using:
 
-   `docker run -p 5000:5000 -v /C/Users:/Volumes wfrain/sc2menetdrug`
+   `docker run -p 5000:5000 -v /C/Users:/Volumes fuhaililab/sc2menetdrug`
 
    This will mount local directory `/C/Users` to docker container directory `Volumes`. You can find it when you set working directory in sc2MeNetDrug.
 
@@ -35,18 +35,13 @@ We recommend you to use Docker installation if possible. Since we set up all the
 
    Or you can set it when run the docker image:
 
-   `docker run -p 5000:5000 -m 16g --memory-swap 4g -v /C/Users:/Volumes wfrain/sc2menetdrug`
+   `docker run -p 5000:5000 -m 16g --memory-swap 4g -v /C/Users:/Volumes fuhaililab/sc2menetdrug`
 
    Where `-m` is the memory limit and `--memory-swap` is the amount of memory is allowed to swap to disk.
 
 ## Desktop Application
 
 ### Prerequisite
-
-```
-Important
-{: .label .label-red }
-```
 
 In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA environment** installed in your system. If you haven't install it yet, you can find it in [JAVA Website](https://www.java.com/). Meanwhile, you need have **Python environment** and **tensorflow package** installed in your **default Python environment**. If you haven't install it yet, we would recommend you to install Python through anaconda. You can find it in [Anaconda](https://www.anaconda.com), then install tensorflow package through by `pip install tensorflow` in terminal. The default Python environment refers to the Python environment that list in environment path. This is very important especially when your computer have more than one python environment.
 
