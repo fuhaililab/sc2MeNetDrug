@@ -32,6 +32,12 @@ After dimension reduction, you will receive two `.RData` files in your working d
 * `encoder_result.RData`: Saves the data after the auto encoder in a variable named `encoder_result`. The data is a data frame with 64 columns representing 64 dimensions, and number of rows is equal to the number of samples after preprocessing.
 * `tsne_result.RData`: Saves the data after the T-SNE algorithm in a variable named  `tsne_result`.  The data is a data frame with 2 columns representing 2 dimensions, and the number of rows is equal to the number of samples after preprocessing.
 
+
+
+## Video Demnostration
+
+<iframe width="700" height="485" src="https://www.youtube.com/embed/5tGCz6Qf9t8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Methodology
 
 Dimension reduction analysis in sc2MeNetDrug involves several steps:

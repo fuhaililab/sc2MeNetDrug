@@ -71,5 +71,7 @@ In order the sc2MeNetDrug to run well in your Laptop/PC, you need have **JAVA en
 
 ## Video Demonstration
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/q1BFcl_cdAk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+This video demonstrate how to download sc2MeNetDrug in Docker version.
+
+<iframe width="700" height="485" src="https://www.youtube.com/embed/5dQlY_KFaos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

@@ -30,3 +30,9 @@ If you have your own marker gene, you can click the blue button "Add new gene" t
 
 You can save and use modified marker gene table in the next time. To do that, after you modified table, click blue button "Save current marker gene table", the modified marker gene table will be saved to working directory within file `markerGeneTable.RData`. Next time, whenever you set the working directory, the saved marker gene table will be loaded in to sc2MeNetDrug automatically. Notice that you need to first set appropriate working directory before you save marker gene table.
 
+
+
+## Video Demonstration
+
+<iframe width="700" height="485" src="https://www.youtube.com/embed/_eBaJk48Qto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
