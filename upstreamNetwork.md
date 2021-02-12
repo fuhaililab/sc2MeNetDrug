@@ -31,27 +31,7 @@ All the data for upstream network analysis is saved in the "upRegulatedLigandsRe
 
 Inside the group directory, you will see three files:
 
-* `genesInformation.RData`：Saves the log fold change and p-value information used for the differentially expressed genes test in the list variable `genesInformation`. You can use the cell type name to get the corresponding result, for example:
-
-  ```R
-  endothelial_result<-genesInformation[["Endothelial"]]
-  ```
-
-  The name of the cell type is equal to the name displayed in the application and only cell types that exist in both the test and control group will be kept. Meanwhile, only genes that have positive log fold change values will be kept.
-
-  The result is a dataframe with the first column as the log fold change, the second and third columns as the expression percentages in the test and control groups respectively, the fourth column as the Wilcoxon rank sum test adjusted p-values, and the fifth column as the bimod test adjusted p-values based on the Bonferroni correction. You can obtain them through:
-
-  ```R
-  log_fc<-endothelial_result[,1]
-  pct1<-endothelial_result[,2]
-  pct2<-endothelial_result[,3]
-  wlicox_p<-endothelial_result[,4]
-  wilcox_p_adjust<-endothelial_result[,5]
-  bimod_p<-endothelial_result[,6]
-  bimod_p_adjust<-endothelial_result[,7]
-  ```
-
-  For more information about the table, you can check the [Seurat website](https://satijalab.org/seurat/v3.1/de_vignette.html).
+* <iframe width="700" height="485" src="https://www.youtube.com/embed/1yUrm-1OuZw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 * `upRegNetwork.RData`: Saves up-regulated ligands and receptors network data in the list variable  `upReg_network`. The list has two variables. The first saves the network data for up-regulated ligands, and the second saves the network data for up-regulated receptors. You can obtain them through:
 
@@ -86,6 +66,14 @@ Inside the group directory, you will see three files:
   ```
 
 * You will also see `drugData.RData` and `drugBank_mapping.RData`, for more information, you can see [Drug Discovering](Drug1.md)
+
+
+
+## Video Demonstration
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UoPLr3Ubad8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 
 ## Methodology
 
