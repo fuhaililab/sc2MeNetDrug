@@ -31,8 +31,6 @@ All the data for upstream network analysis is saved in the "upRegulatedLigandsRe
 
 Inside the group directory, you will see three files:
 
-* <iframe width="700" height="485" src="https://www.youtube.com/embed/1yUrm-1OuZw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 * `upRegNetwork.RData`: Saves up-regulated ligands and receptors network data in the list variable  `upReg_network`. The list has two variables. The first saves the network data for up-regulated ligands, and the second saves the network data for up-regulated receptors. You can obtain them through:
 
   ```R
