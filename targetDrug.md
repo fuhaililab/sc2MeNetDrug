@@ -41,6 +41,12 @@ All data for drug discovering and clustering based on targets and chemical struc
 * "CellType2_CellType1": This directory saves data for drug discovering data of downstream signaling network from cell type 2 to cell type 1, where "CellType1" and  "CellType2" are cell types selected by the user. Inside the directory,  you can see:
   * `targetDrug.RData`: Saves all the drug discovering and clustering based on target and chemical structure analysis result in list variable `targetDrug2`. The variable has five members. The first is a drug summary table for all the drugs discovered. The second is drug network data saved in `.json` format. The third is an APcluster object saved APclustering result for discovered drugs. For more information about APcluster object, you can see [APCluster](https://cran.r-project.org/web/packages/apcluster/vignettes/apcluster.pdf). The fourth and fifth variable are nodes and edges information of drug clustering results used for display.
 
+## Video Demonstration
+
+<iframe width="700" height="485" src="https://www.youtube.com/embed/gEfwyLjuGUw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
 ## Methodology
 
 ### Drug Discovering

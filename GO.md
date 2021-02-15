@@ -38,7 +38,11 @@ After computation, you will see one file in your working directory:
   down_GO_genes<-GO_result[[4]]
   ```
 
+## Video Demonstration
+
+<iframe width="700" height="485" src="https://www.youtube.com/embed/hRulpgtLhHU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Methodology
 
-
+To obtain the gene-gene ontology (GO) term information, the R libraries, `org.Hs.eg.db `and `GO.db` were used. The Fisher’s exact test was used to identify the statistically activated/enriched GOs based on the up-regulated genes and the genes in each GO term. 
 
