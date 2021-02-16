@@ -10,7 +10,7 @@ nav_order: 2
 
 ## sc2MeNetDrug Download Request
 
-In order to download S2CNetDrug, please fill the form below. Then we will send download link to your email.
+In order to download S2CNetDrug, please fill out the form below. Then we will send the download link to your email.
 
 <div class="container">  
   <form id="contact"    action="https://formspree.io/f/xjvpzybz" method="POST">
