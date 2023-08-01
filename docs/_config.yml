@@ -11,5 +11,5 @@ markdown: kramdown
 logo: "pic/sc2MeNetDrug_blue.png"
 ga_tracking: G-W3VSLFBJ1M
 ga_tracking_anonymize_ip: true
-color_scheme: green-000
+color_scheme: $green-000
 
