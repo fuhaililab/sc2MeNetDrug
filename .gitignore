@@ -48,3 +48,5 @@ rsconnect/
 .DS_Store
 .jekyll-cache
 .idea
+docs/_site
+docs/.jekyll-cache
