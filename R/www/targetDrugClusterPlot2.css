@@ -1,0 +1,21 @@
+ .links line {
+  stroke: #999;
+  stroke-opacity: 0.5;
+}
+
+.nodes circle {
+  opacity: .3;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.nodes rect {
+  opacity: .3;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  opacity:.3;
+  font: 10px sans-serif;
+  pointer-events: none;
+}

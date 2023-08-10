@@ -1,0 +1,33 @@
+ .links line {
+  stroke: #999;
+  stroke-opacity: 0.5;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.haveDrug circle{
+  opacity:0.9;
+}
+.noDrug circle{
+  opacity:.4;
+}
+.nodes rect {
+  opacity: .7;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  opacity:.7;
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+.inactiveNode circle,
+.inactiveNode rect,
+.inactiveNode text {
+    opacity: .2;
+    color:red;
+}

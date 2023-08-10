@@ -1,0 +1,7 @@
+#containerRect{
+    transition: opacity 250ms;
+    -webkit-transition: opacity 250ms;
+    -moz-transition: opacity 250ms;
+    box-shadow: 2px ;
+    
+}
