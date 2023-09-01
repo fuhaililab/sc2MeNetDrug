@@ -36,7 +36,7 @@ First, make sure you have the required R environment (>=4.2.1) and Rstudio IDE. 
 ```
 git clone https://github.com/fuhaililab/sc2MeNetDrug.git
 ```
-Then, open the repository in the Rstudio and run the `dependencies.R` to install all dependent packages used in sc2MeNetDrug. Finally, open `ui.R` and click `run app` in the top right part of Rstudio to open the sc2MeNetDrug.
+Then, open the repository in the Rstudio and run the `dependencies.R` to install all dependent packages used in sc2MeNetDrug. Finally, go to R directory, open `ui.R` and click `run app` in the top right part of Rstudio to open the sc2MeNetDrug.
 
 ### Usage
 The tool is built up on R shiny and powered by Seurat for easy use and better visualization. We provide detailed instruction for using sc2MeNetDrug in [documents](https://fuhaililab.github.io/sc2MeNetDrug/).
