@@ -1,8 +1,45 @@
 # sc2MeNetDrug
-**sc2MeNetDrug**: A computational tool for analyzing inter-cell signaling communication and drug prediction with scRNA-seq data. 
+A user-friendly computational tool for analyzing scRNA-seq data to discover inter-cell signaling communication and drugs. In this tool, we include data quality control, imputation, normalization, data dimension reduction, cell population clustering, cell type annotation, upstream network analysis, cell-cell communication network analysis, drug discovery, Gene Ontology analysis, and many other useful methods for analyzing scRNA-seq data. We provide a user-friendly interface, instructions, a powerful visualization tool, and convenient data-saving and retrieving methods. In addition, researchers can analyze data without any programming. For more information and documentation, please visit [our website](https://fuhaililab.github.io/sc2MeNetDrug/).
+
+### Overview
+![overview](overview.png)
+
+### Requirement
+```
+R >= 4.2.1
+shinydashboard
+shiny
+shinyjs
+shinyBS
+plotly
+r2d3
+DT
+stringr
+shinyFiles
+fs
+data.table
+org.Hs.eg.db
+GO.db
+GOSemSim
+jsonlite
+dplyr
+Seurat
+SeuratWrappers
+igraph
+rcdk
+fingerprint
+glmGamPoi
+```
+
+### Download
+First, make sure you have the required R environment (>=4.2.1) and Rstudio IDE. Next, in the local terminal, `cd` to the desired directory and clone the sc2MeNetDrug repository by:
+```
+git clone https://github.com/fuhaililab/sc2MeNetDrug.git
+```
+Then, open the repository in the Rstudio and run the `dependencies.R` to install all dependent packages used in sc2MeNetDrug. Finally, open `ui.R` and click `run app` in the top right part of Rstudio to open the sc2MeNetDrug.
 
 ### Usage
-The tool is built up on R shiny for easy use and better visualization. We provide detailed instruction for using sc2MeNetDrug in [documents](https://fuhaililab.github.io/sc2MeNetDrug/).
+The tool is built up on R shiny and powered by Seurat for easy use and better visualization. We provide detailed instruction for using sc2MeNetDrug in [documents](https://fuhaililab.github.io/sc2MeNetDrug/).
 
 
 ### Citation
