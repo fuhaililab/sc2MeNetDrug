@@ -86,17 +86,17 @@ body {
 #deleteRowButton{
 	position: relative;
 	top:5px;
-	left:42px;
+	left:0px;
 }
 #originalButton{
 	position: relative;
 	top:5px;
-	left:85px;
+	left:45px;
 }
 #saveMarkerButton{
   position: relative;
   top:5px;
-	left:130px;
+	left:90px;
 }
 #newCellBar{
   position:relative;
@@ -117,18 +117,19 @@ body {
 	position: relative;
 	margin-left:95%;
 }
+#drugFileExpend{
+	position: relative;
+	margin-left:95%;
+}
 #drDownload{
 	position: relative;
 	margin-left: 75%;
 }
-#mianClusterDownload{
+#ClusterDownload{
 	position: relative;
 	margin-left: 75%;
 }
-#subClusterDownload{
-	position: relative;
-	margin-left: 75%;
-}
+
 #classificationDownload{
 	position: relative;
 	margin-left: 80%;
@@ -155,11 +156,15 @@ body {
 }
 #adButton{
 	position: relative;
-	left: 5px;
+	left: 10px;
 }
 #pdacButton{
 	position:relative;
-	left: 30px;
+	left: 35px;
+}
+#doClassifyButton{
+	position:relative;
+	left: 70px;
 }
 #currentDirBar{
 	position: relative;

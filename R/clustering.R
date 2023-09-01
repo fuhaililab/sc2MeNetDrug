@@ -1,24 +1,33 @@
-set.seed(123)
-#optics clustering method
-findOrder<-function(df,eps=NULL,minPts=5){
-  result<-optics(df,eps=NULL,minPts=5)
-  result
+# Function to find neighbor for each cell in scRNA-seq data.
+#'
+#' @param seurat_data Seurat object.
+#' @param nPC The number of top dimensions used for the clustering algorithm.
+#'
+#' @return Seurat object with the neighbor results saved.
+#' @export
+#'
+#' @examples
+#'
+find_neighbors <- function(seurat_data, nPC) {
+  seurat_data <- FindNeighbors(seurat_data,
+                               dims = 1:nPC,
+                               verbose = FALSE)
+  seurat_data
 }
 
-extract<-function(result,xi){
-  cl<-extractDBSCAN(result,xi)
+
+#' Function to do the clustering for scRNA-seq data.
+#'
+#' @param seurat_data Seurat object.
+#' @param resolution Clustering resolution, a larger value with results in more clusters.
+#'
+#' @return Seurat object with clustering results saved.
+#' @export
+#'
+#' @examples
+clustering <- function(seurat_data, resolution) {
+  seurat_data <- FindClusters(seurat_data,
+                              resolution = resolution,
+                              verbose = FALSE)
+  seurat_data
 }
-
-
-# 
-# result<-findOrder(df_tsne,eps=1,minPts = 50)
-# dfClust<-extractDBSCAN(result,0.8)
-# unique(dfClust$cluster)
-# df_cluster<-cbind(df_tsne,dfClust$cluster)
-# 
-# colnames(df_cluster)[3]<-"cluster"
-# 
-# plot_ly(df_cluster,x=~V1,y=~V2,type="scatter",mode="markers"
-#         ,color=~factor(cluster),colors="Accent",width=700,height=600,
-#         text=~factor(cluster),hovertemplate = paste('<b>Cluster</b>: %{text}'))%>%
-#   layout(legend=c(itemdoubleclick="toggleothers"))

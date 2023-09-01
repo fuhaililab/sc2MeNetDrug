@@ -1,8 +1,28 @@
-#mutli-core tsne function
-runTsne<-function(df,max_iter,perplexity){
-  df_tsne=Rtsne(df,initial_config = NULL, dims = 2,  
-               max_iter = max_iter,perplexity =perplexity, pca=FALSE,num_threads=2,verbose=TRUE,theta=0.3,check_duplicates=FALSE)
-  
-  return(as.data.frame(df_tsne$Y))
+# Algorithms for dimension reduction
+
+#' Function to do the PCA analysis of scRNA-seq data.
+#'
+#' @param seurat_data Seurat object
+#'
+#' @return Seurat object with the PCA results saved.
+#' @export
+#'
+#' @examples
+PCA <- function(seurat_data) {
+  seurat_data <- RunPCA(seurat_data, verbose = FALSE)
+  seurat_data
 }
 
+#' Function to do the UMAP analysis for scRNA-seq data.
+#'
+#' @param seurat_data Seurat object.
+#' @param nPC The number of top dimensions used for UMAP algorithm.
+#'
+#' @return Seurat object with UMAP results saved.
+#' @export
+#'
+#' @examples
+UMAP <- function(seurat_data, nPC) {
+  seurat_data <- RunUMAP(seurat_data, dims = 1:nPC, verbose = FALSE)
+  seurat_data
+}
