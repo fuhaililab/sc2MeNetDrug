@@ -559,7 +559,7 @@ loadRnaFile <- function(input, rv, session) {
         check.names = FALSE,
         as.is = FALSE
       )
-      data <- Matrix(data, sparse = TRUE)
+      data <- Matrix(as.matrix(data), sparse = TRUE)
     } else if (tolower(suffix) == "rds") {
       data <- readRDS(input$rnaDataFile$datapath)
       if (class(data)[1] == "Seurat") {
