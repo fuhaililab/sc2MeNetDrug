@@ -2,7 +2,7 @@
 A user-friendly computational tool for analyzing scRNA-seq data to discover inter-cell signaling communication and drugs. In this tool, we include data quality control, imputation, normalization, data dimension reduction, cell population clustering, cell type annotation, upstream network analysis, cell-cell communication network analysis, drug discovery, Gene Ontology analysis, and many other useful methods for analyzing scRNA-seq data. We provide a user-friendly interface, instructions, a powerful visualization tool, and convenient data-saving and retrieving methods. In addition, researchers can analyze data without any programming. For more information and documentation, please visit [our website](https://fuhaililab.github.io/sc2MeNetDrug/).
 
 ### Overview
-![overview](overview.png)
+![overview](docs/pic/overview.png)
 
 ### Requirement
 ```
