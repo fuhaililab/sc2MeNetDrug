@@ -9,7 +9,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-The upstream network analysis can be located in the "Gene Expression" section. This analysis enables you to identify up-regulated ligands and receptors for specific design or test conditions and construct a ligand-receptor interaction network using the chosen ligand-receptor interaction database. For details on selecting an interaction database, please refer to the [Set up](/setup.md) section.
+The upstream network analysis can be located in the "Gene Expression" section. This analysis enables you to identify up-regulated ligands and receptors for specific design or test conditions and construct a ligand-receptor interaction network using the chosen ligand-receptor interaction database. For details on selecting an interaction database, please refer to the [Set up](/setup) section.
 
 <p align="center"><img src="pic/upstreamNetworkAnalysis.png" alt="upstreamNetworkAnalysis" style="zoom:50%;" /></p>
 
@@ -39,6 +39,10 @@ The upstream network analysis can be located in the "Gene Expression" section. T
 All upstream network analysis data is stored in the "upRegulatedLigandsReceptors" folder in the working directory. Within this folder, results for each group combination have their own subfolder. For instance, if your test group is named "test" and control group is named "control", the results will be saved in the *control-test* folder. If you select more than one groups, such as selecting "test1" and "test2" as the test group and "control1" and "control2" as the control group, the folder will be named as *test1+test2-control1+control2*.  **We only save the latest result for each group combination**. If you don't upload group information, all results will save in the "noGroup" directory.
 
 Within the group folder, you will find three files:
+* `genesInformation.RData`: Saves the differential expression gene analysis results table of all cell type in the list variable `genesInformation`. You can access the result table for a particular cell type by:
+  ```R
+  genesInformation$your_cell_type
+  ```
 
 * `upRegNetwork.RData`: Saves up-regulated ligands and receptors network data in the list variable  `upReg_network`. The list has two variables. The first saves the network data for up-regulated ligands, and the second saves the network data for up-regulated receptors. You can obtain them through:
 
@@ -71,9 +75,6 @@ Within the group folder, you will find three files:
   up_to_exp_network_edge<-up_to_exp_network[[2]]
   up_to_exp_network_node<-up_to_exp_network[[3]]
   ```
-
-* You will also see `drugData.RData` and `drugBank_mapping.RData`, for more information, you can see [Drug Discovering](Drug1.md)
-
 
 
 ## Video Demonstration

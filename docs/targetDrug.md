@@ -12,7 +12,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 This analysis is located in the "Communication and Drug" section. The 'Drug Discovery and Clustering based on Targets and Chemical Structure' analysis helps identify potential drugs to inhibit the signaling communication network, leveraging the drug targets and their chemical structures.
 
-This section is calculated concurrently with the signaling communication network discovery. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). You don't need to do any additional operation for this analysis, just set all the parameters for the signaling communication network discovery and Drug Discovering and Clustering Based on Signaling Signatures, then click blue button  "Generate Communication Network and Drug" to start computation.
+This section is calculated concurrently with the signaling communication network discovery. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication). You don't need to do any additional operation for this analysis, just set all the parameters for the signaling communication network discovery and Drug Discovering and Clustering Based on Signaling Signatures, then click blue button  "Generate Communication Network and Drug" to start computation.
 
 <p align="center"><img src="pic/downstreamNetworkPanel.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 

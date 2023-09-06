@@ -11,7 +11,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 This analysis can be located in the 'Communication and Drug' section. The 'Drug Discovery and Clustering Based on Signaling Signatures' analysis helps identify potential drugs to inhibit the signaling communication network, drawing insights from the signaling signatures of various drugs.
 
-This section is calculated concurrently with the signaling communication network discovery. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication.md). Besides selecting what is needed for signaling communication network discovery, you need to select a number of top drugs to specify how many drug candidates you want in drug discovering. However, if you only want drugs that appear in the drug bank database, you can check the "Only use drug bank drug in drug discovering" check box. Next, click "Generate Communication Network and Drug" to start computation.
+This section is calculated concurrently with the signaling communication network discovery. More information can be found here: [signaling communication network discovery analysis](/cell-cellCommunication). Besides selecting what is needed for signaling communication network discovery, you need to select a number of top drugs to specify how many drug candidates you want in drug discovering. However, if you only want drugs that appear in the drug bank database, you can check the "Only use drug bank drug in drug discovering" check box. Next, click "Generate Communication Network and Drug" to start computation.
 
 <p align="center"><img src="pic/downstreamNetworkPanel.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
@@ -64,7 +64,7 @@ All data for drug discovering based on signaling signatures will be saved in "ce
 
 ### Drug Discovering
 
-After we get up-regulated genes for each of the two cell types in the signaling communication network analysis, sc2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each network. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](../data.md). First, for specific downstream signaling network, all the genes in the network will be selected as target gene set. Then, the enrichment score of each drugs in drugs rank database target on the target gene set will be computed using GSEA. Then, the top \\(K\\) drugs with the lowest enrichment scores would be selected as potential drugs, where \\(K\\) is the number of top drugs.
+After we get up-regulated genes for each of the two cell types in the signaling communication network analysis, sc2NetDrug will use GSEA and a drug rank matrix to discover potential drugs for each network. For more information about the drug rank matrix, you can see [Working Directory and Data Upload](/data). First, for specific downstream signaling network, all the genes in the network will be selected as target gene set. Then, the enrichment score of each drugs in drugs rank database target on the target gene set will be computed using GSEA. Then, the top \\(K\\) drugs with the lowest enrichment scores would be selected as potential drugs, where \\(K\\) is the number of top drugs.
 
 ### Drug Clustering
 

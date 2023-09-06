@@ -9,17 +9,17 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find the signaling communication network Discovery analysis in the "Communication and Drug" section. Signaling communication network Discovery analysis allows you to uncover the down-stream signaling of ligand-receptor of interest. Signaling communication network discovery use the ligand-receptor interaction database. For more information about setting ligand-receptor interaction database, see [Set up](/setup.md). 
+You can find the signaling communication network Discovery analysis in the "Communication and Drug" section. Signaling communication network Discovery analysis allows you to uncover the down-stream signaling of ligand-receptor of interest. Signaling communication network discovery use the ligand-receptor interaction database. For more information about setting ligand-receptor interaction database, see [Set up](/setup). 
 
 <p align="center"><img src="pic/downstreamNetworkPanel.png" alt="downstreamNetwork" style="zoom:40%;" /></p>
 
 1. First, select the two cell types you wish to analyze, along with the respective test and control groups.
 
-2. Next, choose the up-regulated log fold change threshold, p-value threshold,signaling resources and number of drugs. Notes that the sc2MeNetDrug will use different methods for different signaling resources, for more information, see Methodology part.(We would recommend you use KEGG since the computation time of SGTRING is much longer). The number of drugs is related to the drug discovering part. You can find more information in [Drug discovering](signalingDrug.md). 
+2. Next, choose the up-regulated log fold change threshold, p-value threshold,signaling resources and number of drugs. Notes that the sc2MeNetDrug will use different methods for different signaling resources, for more information, see Methodology part.(We would recommend you use KEGG since the computation time of SGTRING is much longer). The number of drugs is related to the drug discovering part. You can find more information in [Drug discovering](/signalingDrug). 
 
 3. If you're analyzing a specific cell-cell combination for the first time, ensure the "Use saved calculation" checkbox is unchecked. If you've previously computed results for that combination and merely want to adjust thresholds, enable the "Use saved calculation" option to reduce computation time. Be aware, for any given cell-cell combination, the application retains only the most recent computation. So, if you're maintaining the same cell-cell combination but changing the test or control group, deselect the "Use saved calculation" checkbox.
 
-4. The "Only use drug bank drug in drug discovering" check box is related to the drug discovering part. You can find more information in [Drug discovering](signalingDrug.md).
+4. The "Only use drug bank drug in drug discovering" check box is related to the drug discovering part. You can find more information in [Drug discovering](/signalingDrug).
 
 5. After computation, you can see the gene expression information table on the right. There are four tables that show ligand and receptor information for both two cell types. You can select certain tables to be displayed on the top. Each table contains five columns. The first is the log fold change, the second and third columns are expression percentages in the test and control groups respectively, the fourth columns is the Wilcoxon rank sum test adjusted p-values, and the fifth column is bimod test adjusted p-values based on the Bonferroni correction.
 
