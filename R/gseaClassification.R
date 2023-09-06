@@ -84,7 +84,7 @@ GSEA.EnrichmentScore2 <-
 #' classification result
 #'
 #' @param df The scRNA expression matrix.
-#' @param tsne_cluster Clustering result table.
+#' @param cell_cluster Clustering result table.
 #' @param gene_symbol Gene symbol list.
 #' @param marker_gene Selected cell type and corresponding marker genes.
 #' @param progress Progress bar for display.
@@ -96,22 +96,22 @@ GSEA.EnrichmentScore2 <-
 #' @examples
 gseaClassification <-
   function(df,
-           tsne_cluster,
+           cell_cluster,
            gene_symbol,
            marker_gene,
            progress,
            outputDir) {
     unique_cell_type <- unique(marker_gene$cell_type)
-    cluster_num <- max(as.numeric(tsne_cluster))
+    cluster_num <- max(as.numeric(cell_cluster))
     
-    for (j in(1:cluster_num)) {
+    for (j in(0:(cluster_num-1))) {
       progress$set((j / cluster_num) * 0.7 + 0.1, detail = "Compute GSEA score")
-      if (is.null(dim(df[, tsne_cluster == j]))) {
-        cluster_mean <- df[, tsne_cluster == j]
+      if (is.null(dim(df[, cell_cluster == j]))) {
+        cluster_mean <- df[, cell_cluster == j]
       } else{
-        cluster_mean <- rowMeans(df[, tsne_cluster == j])
+        cluster_mean <- rowMeans(df[, cell_cluster == j])
       }
-      other_mean <- rowMeans(df[, tsne_cluster != j])
+      other_mean <- rowMeans(df[, cell_cluster != j])
       fold_change <- cluster_mean - other_mean
       
       
@@ -156,7 +156,7 @@ gseaClassification <-
           }
         })
       }
-      if (j == 1) {
+      if (j == 0) {
         classification_result <- es_list
       }
       else{

@@ -32,7 +32,7 @@ dashboardPage(
   
   #HEAD--------------------------------------
   
-  dashboardHeader(title = "SC2MeNetDrug", titleWidth = 240),
+  dashboardHeader(title = "sc2MeNetDrug", titleWidth = 240),
   
   dashboardSidebar(
     sidebarMenu(
@@ -547,7 +547,7 @@ dashboardPage(
             solidHeader = TRUE,
             sliderInput(
               inputId = "nPC",
-              label = "Select tge number of PCs:",
+              label = "Select the number of PCs:",
               min = 10,
               max = 50,
               value = 30,
@@ -871,7 +871,7 @@ dashboardPage(
                  ),
                  fluidRow(
                    box(
-                     title = "Mannual label correction",
+                     title = "Manual label correction",
                      width = 12,
                      status = "success",
                      solidHeader = TRUE,

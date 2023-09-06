@@ -39,6 +39,7 @@ continueWork <- function(input, rv, session) {
       load(paste0(rv$outputDir, "/lastAnalysisDataIndex.RData"))
       if (useRnaData == 1) {
         rv$useRnaData = 1
+        setRnaDataIdents(rv)
         loadRnaDataSelection(rv)
       } else{
         rv$useRnaData = 0

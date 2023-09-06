@@ -349,9 +349,9 @@ function(input, output, session) {
     rv$annotation_result[i, j] <<-
       DT::coerceValue(v, rv$annotation_result[i, j])
     annotation_result <- rv$annotation_result
-    annotation_result$cluster <- c(1:nrow(annotation_result))
+    annotation_result$cluster <- c(0:(nrow(annotation_result)-1))
     annotation_result$cluster_type <-
-      paste(c(1:nrow(annotation_result)),
+      paste(annotation_result$cluster,
             annotation_result$type, sep = "-")
     
     # prevent auto sort in merge
@@ -377,17 +377,17 @@ function(input, output, session) {
     rv$df_classify <- cell_annotation
     rv$rna_type_list <- cell_annotation$type
     
-    if (!is.null(rv$rna_group_list)) {
-      group_type_list <-
-        paste(rv$rna_group_list, rv$rna_type_list, sep = "_")
-      data <- SetIdent(rv$rna_df, value = group_type_list)
-      rm(group_type_list)
-    } else{
-      data <- SetIdent(rv$rna_df, value = rv$rna_type_list)
-    }
-    rv$rna_df <- data
-    save(data, file = paste0(rv$outputDir, "/rna_df.RData"))
-    rm(df_cluster, annotation_result, cell_annotation, data)
+    # if (!is.null(rv$rna_group_list)) {
+    #   group_type_list <-
+    #     paste(rv$rna_group_list, rv$rna_type_list, sep = "_")
+    #   data <- SetIdent(rv$rna_df, value = group_type_list)
+    #   rm(group_type_list)
+    # } else{
+    #   data <- SetIdent(rv$rna_df, value = rv$rna_type_list)
+    # }
+    # rv$rna_df <- data
+    # save(data, file = paste0(rv$outputDir, "/rna_df.RData"))
+    rm(df_cluster, annotation_result, cell_annotation)
     gc()
   }
   

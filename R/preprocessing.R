@@ -12,7 +12,7 @@ quality_control <- function(seurat_data) {
     PercentageFeatureSet(seurat_data, pattern = "^MT-")
   seurat_data <-
     subset(seurat_data, subset = nFeature_RNA > 200 &
-             nFeature_RNA < 7500 & percent.mt < 5)
+             nFeature_RNA < 7500 & percent.mt < 10)
   seurat_data
 }
 

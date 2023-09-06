@@ -293,8 +293,8 @@ drEvent <- function(input, rv, session) {
     save(data, file = paste0(rv$outputDir, "/rna_df.RData"))
     rm(umap_result, pca_result)
     gc()
-    #load pre clustering part
-    loadPreCluster()
+    #load clustering part
+    loadCluster()
     progress$set(1, detail = "Finish")
   },
   error = function(e) {
@@ -489,19 +489,7 @@ classificationEvent <- function(input, rv, session) {
     rv$annotation_result <- annotation_result
     rv$df_classify <- cell_annotation
     rv$rna_type_list <- cell_annotation$type
-    
-    # TODO: set ident of seurat object in DEG analysis instead of here.
-    if (!is.null(rv$rna_group_list)) {
-      group_type_list <-
-        paste(rv$rna_group_list, rv$rna_type_list, sep = "_")
-      data <- SetIdent(rv$rna_df, value = group_type_list)
-      rm(group_type_list)
-    } else{
-      data <- SetIdent(rv$rna_df, value = rv$rna_type_list)
-    }
-    rv$rna_df <- data
-    save(data, file = paste0(rv$outputDir, "/rna_df.RData"))
-    rm(df, df_cluster, annotation_result, cell_annotation, data)
+    rm(df, df_cluster, annotation_result, cell_annotation)
     gc()
     loadGeneExpression1()
     clProgress$inc(1, detail = "Finish")
@@ -541,6 +529,7 @@ geneExpressionDataLoadingEvent <- function(input, rv, session) {
       }
       rv$useRnaData = 1
       loadRnaDataSelection(rv)
+      setRnaDataIdents(rv)
       if (rv$rna_have_group == 0) {
         cell_count <- cellDistribution(rv$rna_type_list, NULL)
         rv$cell_count <- cell_count
