@@ -9,7 +9,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-The upstream network analysis can be located in the "Gene Expression" section. This analysis enables you to identify up-regulated ligands and receptors for specific design or test conditions and construct a ligand-receptor interaction network using the chosen ligand-receptor interaction database. For details on selecting an interaction database, please refer to the [Set up](/setup) section.
+The upstream network analysis can be located in the "Gene Expression" section. This analysis enables you to identify up-regulated ligands and receptors for specific design or test conditions and construct a ligand-receptor interaction network using the chosen ligand-receptor interaction database. For details on selecting an interaction database, please refer to the [Set up](setup) section.
 
 <p align="center"><img src="pic/upstreamNetworkAnalysis.png" alt="upstreamNetworkAnalysis" style="zoom:50%;" /></p>
 
