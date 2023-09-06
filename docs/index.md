@@ -12,7 +12,7 @@ Single-cell RNA sequencing (scRNA-seq) data analysis has rapidly evolved in rece
 We introduce sc2MeNetDrug, a tool designed to facilitate efficient, reliable, and convenient analysis of scRNA-seq data. In this tool, we encompass **data quality control, imputation, normalization, data dimension reduction, cell population clustering, cell type annotation, upstream network analysis, cell-cell communication network analysis, drug discovery, Gene Ontology analysis**, and many other useful methods for analyzing scRNA-seq data. We provide a user-friendly interface, detailed instructions, a powerful visualization tool, and streamlined data-saving and retrieval methods. Additionally, researchers can perform data analysis without the need for programming.
 
 <span class="fs-8">
-[Installation](/installation){: .btn .btn-green .ml-auto }
+[Installation](/sc2MeNetDrug/installation){: .btn .btn-green .ml-auto }
 </span>
 
 ## Overall Workflow
