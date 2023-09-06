@@ -559,7 +559,7 @@ loadRnaFile <- function(input, rv, session) {
         check.names = FALSE,
         as.is = FALSE
       )
-      data <- Matrix(data, sparse = TRUE)
+      data <- Matrix(as.matrix(data), sparse = TRUE)
     } else if (tolower(suffix) == "rds") {
       data <- readRDS(input$rnaDataFile$datapath)
       if (class(data)[1] == "Seurat") {
@@ -726,7 +726,7 @@ loadCommunicationFile <- function(input, rv, session) {
         check.names = FALSE,
         as.is = FALSE
       )
-      network_df <- Matrix(network_df, sparse = TRUE)
+      network_df <- Matrix(as.matrix(network_df), sparse = TRUE)
     } else if (tolower(suffix) == "rds") {
       network_df <- readRDS(input$networkDataFile$datapath)
       if (class(network_df)[1] == "Seurat" &
