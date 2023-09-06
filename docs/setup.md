@@ -7,33 +7,22 @@ has_children: true
 
 # Gene Expression, Communication and Drug Discovering (Downstream Analysis)
 
-This part will be available after you upload data in the "Upstream analysis Data" part and finish the cell annotation part, or upload read count data and cell annotation results in the "Downstream Analysis Data" part.
+This section becomes accessible either after uploading data in the "Upstream Analysis Data" and completing the cell annotation phase, or after uploading both read count data and cell annotation results in the "Downstream Analysis Data" section.
 
-First, you must specify which data you want to use for the downstream analysis. Select "Upstream analysis result data" to use the read count data and cell annotation results computed in the upstream analysis. Select “Downstream analysis uploaded data ” to use data you uploaded in the "Downstream analysis Data" part. After selecting, click the blue button "Load data" to confirm. **Notice that this setting will be applied to all the downstream analyses**.
+1. First, determine the data set you wish to use for the downstream analysis. Choose "Upstream analysis result data" to utilize the read count data and cell annotation results from the upstream analysis. If you prefer using data you've uploaded, select "Downstream analysis uploaded data" from the "Downstream Analysis Data" section. After making your selection, click the blue "Load data" button to confirm. **Be aware that this choice will apply to all subsequent downstream analyses**.
 
-<p align="center"><img src="pic/geneExpression.png" alt="geneExpression" style="zoom:50%;" /></p>
+    <p align="center"><img src="pic/geneExpression.png" alt="geneExpression" style="zoom:50%;" /></p>
 
-You can then select a ligand-receptor interactions database. Currently, we provide three databases. The database you select will be used in all of the following analyses that use ligand and receptor data.
+2. Next, choose a ligand-receptor interactions database. We currently offer three databases for selection. The database you opt for will be utilized in all subsequent analyses that require ligand and receptor data.
 
-Notice that in order to do cell-cell communication and drug discovering analyses, you must download drug data and perform preprocessing in the application, you can find more information about this in [Working Directory Setting and Data Uploading](data.md).
+3. Please note that to conduct cell-cell communication and drug discovery analyses, it's essential to download drug data and carry out preprocessing within the application. More information about this can be found in the [Working Directory Setting and Data Uploading](data.md).
 
-Meanwhile, in order to do a differentially expressed genes test in some analyses, we will set design information for a `Seurat` object after cell annotation for "Upstream analysis data" or a `Seurat` object after preprocessing for "Downstream analysis data". If you upload group or design information, the design information set for the`Seurat` object is the combination of group and cell type. For example, if the cell belongs to "group1" and "Endothelial", the design information in `Seurat` object will be "Endothelial_group1". If you do not upload group or design information, the design information in the`Seurat` object will simply be cell type for each cell.
+4. To conduct a differentially expressed genes test in certain analyses, sc2MeNetDrug will create design information for a `Seurat` object after cell annotation for "Upstream analysis data" or after preprocessing for "Downstream analysis data". If you provide group or design data, the design set for the `Seurat` object will be a combination of the group and cell type. For instance, if a cell is categorized under "group1" and "Endothelial", the design data in the `Seurat` object will be labeled as "Endothelial_group1". If you don't provide group or design data, the `Seurat` object will simply identify the cell type for each cell. You can load data and obtain design information by:
 
-For "upstream analysis data", the `rna_df.RData`  will be refreshed after cell annotation. You can load data and obtain design information by:
-
-```
-library(Seurat)
-Idents(seurat_data)
-```
-
-For "Downstream analysis data", after preprocessing, the design information is set and you can load `network_df.RData` in your working directory to view the design information using the following:
-
-```
-library(Seurat)
-Idents(seurat_data)
-```
-
-
+   ```
+   library(Seurat)
+   Idents(data)
+   ```
 
 ## Video Demonstration
 

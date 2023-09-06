@@ -12,3 +12,7 @@ logo: "pic/sc2MeNetDrug_blue.png"
 ga_tracking: G-W3VSLFBJ1M
 ga_tracking_anonymize_ip: true
 
+# LaTeX rendering via "katex" (KaTeX, default) or "mathjax" (MathJax) or "none" / "off" (NO rendering)
+latex: mathjax
+compress_html:
+  blanklines: true

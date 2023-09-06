@@ -9,27 +9,36 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find the upstream network analysis in the "Gene Expression" section. Upstream network analysis allows you to find up-regulated ligands and receptors for certain design or test conditions and generate a ligand-receptor intercation network based on the ligand-receptor intercation database. For choosing a ligand-receptor intercation database, please see [Set up](/setup.md).
+The upstream network analysis can be located in the "Gene Expression" section. This analysis enables you to identify up-regulated ligands and receptors for specific design or test conditions and construct a ligand-receptor interaction network using the chosen ligand-receptor interaction database. For details on selecting an interaction database, please refer to the [Set up](/setup.md) section.
 
 <p align="center"><img src="pic/upstreamNetworkAnalysis.png" alt="upstreamNetworkAnalysis" style="zoom:50%;" /></p>
 
-In the Gene Expression part, you can find the upstream network analysis frame. First, you need to select a log fold change threshold and a p-value threshold to discover up-regulated ligands and receptors. If you upload design or group information, you also need to specify the control group and test group. If it is the first time you run the upstream network analysis for a certain control-test group combination, you should uncheck the "Use saved calculation" check box. After you have performed the calculation once and want to adjust the threshold, the application can automatically look for the saved result and conserve calculation time by checking "Use saved calculation". After you choose the threshold and group, click the blue button "Upstream Network Analysis" to start upstream network analysis. **Normally, this part is the most time-costly part of the analysis, thus it is important to make sure your computer can keep running properly for a long time before clicking, otherwise you may lose results.**
+1. In the Gene Expression part, you can find the upstream network analysis panel. Start by selecting a log fold change threshold and a p-value threshold to identify up-regulated ligands and receptors. If you've uploaded design or group data, you'll also need to define the control and test groups.
 
-After computation, there will be six total plots. The first two are the up-regulated ligands and up-regulated receptors. The next four plots are the upstream network plots. They are up-regulated ligands to expressed receptors, expressed ligands to up-regulated receptors, up-regulated ligands to up-regulated receptors, and the combined network.
+2. If you're running the upstream network analysis for a specific control-test group combination for the first time, ensure the "Use saved calculation" checkbox is unchecked. However, after the initial calculation, if you wish to modify the threshold, the application can retrieve the saved result to save on computation time by checking the "Use saved calculation" box in such cases.
 
-<p align="center"><img src="pic/upstreamLigand.png" alt="upstreamLigand" style="zoom:50%;" /></p>
+3. After setting the threshold and selecting a group, click the blue "Upstream Network Analysis" button to initiate the analysis. Please note, this step is typically the most time-consuming part of the process. Ensure your computer remains operational throughout to avoid losing any results.
 
-In the up-regulated ligands and receptors plot, all the cells that don't have up-regulated genes will be deleted from plot. In addition, cells that only exist in one of the groups will be deleted. In the upstream network plot, all the cells that don't have any interaction will be deleted. **If you don't see anything after the calculation, try to reopen the application or set a loose threshold.**
+4.After the analysis is complete, six plots will be displayed. The first two show the up-regulated ligands and receptors. The following four represent upstream network plots:
+  * Up-regulated ligands to expressed receptors, 
+  * Expressed ligands to up-regulated receptors, 
+  * Up-regulated ligands to up-regulated receptors, 
+  * and The combined network.
 
-<p align="center"><img src="pic/upstreamNetwork.png" alt="upstreamNetwork" style="zoom:50%;" /></p>
+  For more detailed information about these results, please refer to the methodology section.
 
+  <p align="center"><img src="pic/upstreamLigand.png" alt="upstreamLigand" style="zoom:50%;" /></p>
+
+  In the up-regulated ligands and receptors plot, cells without up-regulated genes are excluded. Additionally, cells present in only one group are removed. In the upstream network plot, cells without any interactions are omitted. If no results appear after the calculation, consider reopening the application or adjusting to a more lenient threshold.
+
+  <p align="center"><img src="pic/upstreamNetwork.png" alt="upstreamNetwork" style="zoom:50%;" /></p>
 
 
 ## Data
 
-All the data for upstream network analysis is saved in the "upRegulatedLigandsReceptors" directory within the working directory. Inside the directory, each group combinations has their own directory to save results. For example, if your test group is named "test" and control group is named "control", the results will be saved in the directory as *control-test*. If you select more than one group in the test or control, like "test1" and "test2" in the test group and "control1" and "control2" in the control group, the directory will be named as *test1+test2-control1+control2*.  **We only save the latest result for each group combination**, please be careful. If you don't upload group information, the results will save in the "noGroup" directory.
+All upstream network analysis data is stored in the "upRegulatedLigandsReceptors" folder in the working directory. Within this folder, results for each group combination have their own subfolder. For instance, if your test group is named "test" and control group is named "control", the results will be saved in the *control-test* folder. If you select more than one groups, such as selecting "test1" and "test2" as the test group and "control1" and "control2" as the control group, the folder will be named as *test1+test2-control1+control2*.  **We only save the latest result for each group combination**. If you don't upload group information, all results will save in the "noGroup" directory.
 
-Inside the group directory, you will see three files:
+Within the group folder, you will find three files:
 
 * `upRegNetwork.RData`: Saves up-regulated ligands and receptors network data in the list variable  `upReg_network`. The list has two variables. The first saves the network data for up-regulated ligands, and the second saves the network data for up-regulated receptors. You can obtain them through:
 

@@ -2,29 +2,28 @@
 layout: default
 title: Dimension Reduction
 permalink: /dimensionReduction/
-nav_order: 6
+nav_order: 5
 ---
 
 # Dimension Reduction
 
 ## Introduction
 
-This part will only be avaliable after you upload data in the "Upstream analysis Data" part and finish preprocessing. Dimension reduction allows you to reduce high dimensional scRNA-seq data to low dimensional space for visualization and further analysis.
+This section becomes accessible only after you've uploaded data under the "Upstream Analysis Data" and completed preprocessing. Dimension reduction enables the conversion of high-dimensional scRNA-seq data into a lower-dimensional space, facilitating visualization and subsequent analysis.
 
 <p align="center">
-  <img src="../pic/ae.png" alt="ae" style="zoom:50%;" />
+  <img src="../pic/dimensionReductionPanel.png" alt="Dimension reduction panel" style="zoom:50%;" />
   </p>
 
-First, click the blue button "Auto Encoder" to train the auto encoder.Then, select parameters in the T-SNE panel and perform the T-SNE computation. Notice that you can also skip the auto encoder and directly perform T-SNE. If you want to do T-SNE directly, you can uncheck the "Use auto encoder result" check box.
+1. First, choose the number of PCs in the panel to determine how many principal components will be utilized by the UMAP dimension reduction algorithm. (For more details, refer to the Methodology section).
 
-"Maximum iteration time" controls the maximum iteration time of the algorithm. "Perplexity number" controls the number of close neighbors each point has in algorithm assumption. 
+2. Next, click "Run PCA + UMAP" to start dimension reduction analysis.
 
-<p align="center"><img src="../pic/tsne.png" alt="tsne" style="zoom:50%;" /></p>
+3. After dimension reduction, we will see visualization results in the right panel:
 
-You can adjust these two parameters to obtain the best results. After dimension reduction, we will see visualization results:
+    <p align="center"><img src="../pic/dimensionReductionResult.png" alt="Dimension reduction result" style="zoom:60%;" /></p>
 
-<p align="center"><img src="../pic/dimensionReduction.png" alt="DimensionReduction" style="zoom:60%;" /></p>
-
+4. You can adjust the number of PC to obtain the best results. 
 ## Data
 
 After dimension reduction, you will receive two `.RData` files in your working directory:
@@ -33,26 +32,19 @@ After dimension reduction, you will receive two `.RData` files in your working d
 * `tsne_result.RData`: Saves the data after the T-SNE algorithm in a variable named  `tsne_result`.  The data is a data frame with 2 columns representing 2 dimensions, and the number of rows is equal to the number of samples after preprocessing.
 
 
-
-## Video Demnostration
-
-<iframe width="700" height="485" src="https://www.youtube.com/embed/z67ET2RFFmE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Methodology
 
 Dimension reduction analysis in sc2MeNetDrug involves several steps:
 
-First, select first 2048 variable genes. To select variable genes, local polynomial regression is used to fit the relationship of log(variance) and log(mean). Then, standardize the gene expression values using the observed mean and expected variance (given by the fitted line). Gene expression variance is then calculated on the standardized values after clipping. This is done by `FindVariableFeatures` with `selection.method` set as `"vst"` in the`Seurat` package<sup>[1]</sup>.
+1. First, select the initial 2000 variable genes. To identify these genes, local polynomial regression fits the relationship between log(variance) and log(mean). Subsequently, gene expression values are standardized using the observed mean and the expected variance (determined by the fitted line). The variance of gene expression is calculated on the standardized values after clipping. This procedure is automatically executed by the sctranform function in the Seurat package.
 
-Next, use the auto encoder to reduce the dimensions from 2048 to 64. First, use min-max normalization based on the genes to normalize the data in these 2048 genes. Then, train the data in the auto encoder. The structure of the auto encoder is described as follows. In the encoder part, we have four dense layers with output dimensions 1024, 512, 128 and 64. After each dense layer, a batch normalization layer is added to speed up convergence. After the second and third dense layer, we add a dropout layer with drop out percentages set as 0.2 and 0.3. In the decoder part, we have four dense layers with output dimensions 128, 512, 1024 and 2048. After each dense layer, a batch normalization layer is added. The activation function of each layer is ReLU. In the training part, we set the loss function as MSE, the optimizer as “Adam”, the epoch to be 15 and batch size to be 128. The auto encoder is done using the`Keras` package for R.
+2. Next, Principal Components Analysis (PCA) is applied to these 2000 variable genes. These genes are then projected into 50 dimensions in order as 50 different principal components (PCs).
 
-Finally, T-SNE is used to further reduce the data to two dimensions. If the user checks the "Use auto encoder result" checkbox, the application will use the output of the encoder as the input of the T-SNE algorithm, otherwise, the application will directly use the normalized data with the first 2048 variable genes. T-SNE is done using the`Rtsne` R package.
-
-
+3. Finally, the UMAP<sup>1</sup> method will be used on the first \\(x\\) PCs and further project data into 2 dimensions, where \\(x\\) is the number of PCs selected by the user.
 
 ## References
 
-1. Stuart, T. *et al.* Comprehensive Integration of Single-Cell Data. *Cell* (2019) doi:10.1016/j.cell.2019.05.031.
+1. McInnes, L, Healy, J, UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction, ArXiv e-prints 1802.03426, 2018
 
 
 

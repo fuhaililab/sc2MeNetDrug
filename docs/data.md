@@ -1,71 +1,76 @@
 ---
 layout: default
-title: Working Directory Setting and Data Uploading
+title: Setting the Working Directory and Uploading Data
 permalink: /data/
-nav_order: 4
+nav_order: 3
 ---
 
-# Working Directory and Data Upload
+# Setting the Working Directory and Uploading Data
 
 ## Set Working Directory
 
-<p align="center"><img src="../pic/workingDir.png" alt="workingDir" style="zoom:50%;" /></p>
+<p align="center"><img src="../pic/workingDir.png" alt="Working directory" style="zoom:50%;" /></p>
 
-Before you upload your data, you should first select a working directory, where all the results will be saved. Note that if you have multiple datasets  to analyze, you should set different working directories for each dataset, otherwise new results will automatically overwrite the previous results. All the results are saved in `.RData` format, which makes it easy for the application to reload it, but you can also save data in other formats inside the application.
+Before uploading your data, you should first select a working directory where all the results will be saved. Please note that if you have multiple datasets to analyze, it's essential to set different working directories for each dataset; otherwise, new results will automatically overwrite the previous ones. All the results are saved in the .RData format, which makes it easy for the application to reload them, but you can also save data in other formats within the application.
 
-To set a working directory, first click the grey button "Select Working Directory".
+To set a working directory, click the gray "Select Working Directory" button in the top of "Upload Data" section.
 
-<p align="center"><img src="../pic/selectDir.png" alt="selectDir" style="zoom:50%;" /></p>
+<p align="center"><img src="../pic/selectDir.png" alt="Select directory" style="zoom:50%;" /></p>
 
-Then, the above interface should be displayed and you can click the directory you want to choose on the left side. After you choose a directory, click "Select". Finally, click the blue button "Set Working Directory" to change the working directory in the application. Once you see the directory you choose displayed in application, you have successfully set the directory. Notice that after you set or reset the directory, all the previous data and results loaded in the application will be unloaded and the whole application will be reinitialized. 
-
-In docker version, the docker environment will be show in default. But you can find the mount directory of you local computer in the directory list once you run the docker version with local directory mounting. For more information, please see [docker installation](./installation.md)
-
+Next, the above interface should be displayed, and you can click on the directory you want to select from the left side. Once you've chosen a directory, click "Select." Finally, click the blue "Set Working Directory" button to change the working directory in the application. When you see the chosen directory displayed in the application, you have successfully set the directory. Please note that after you set or reset the directory, all the previous data and results loaded in the application will be unloaded, and the entire application will be reinitialized.
 ## Upload Data
 
- After you select a working directory, you can upload your data. Currently, we accept RDS and csv files. If you only have read count data, you should upload your data in the "Upstream analysis" part. RNA-seq read count data should be a dataframe with each row representing each gene and each column representing each cell. The row name of the dataframe should be the gene symbol. If you have a column name for your dataset, you should check the "Header" checkbox below "Choose your group or design file". Notice that we only accept files with sizes less than 5GB.
+<p align="center"><img src="../pic/rawDataUpload.png" alt="Upload upstream data panel" style="zoom:33%;" /></p>
 
-<p align="center"><img src="../pic/rawDataUpload.png" alt="rawDataUpload" style="zoom:33%;" /></p>
+1. After you select a working directory, you can upload your scRNA-seq data. For read count data, we only accept `.RDS` file contains dgCMatrix or Seurat object, or `.csv` files.
 
-Group or design file is used to assign each cell sample with a experimental condition, which is an optional choice, but we recommend you upload it in order to obtain reasonable analysis results. The file should be a csv or RDS file, and the data should be a data frame with only one column. The length of the row should be equal to the number of cells in the read count data. **Please don't include the row name in your data**. 
+2. If you don't have cell annotation results, you should upload your data in "Uploading Upstream Analysis Data" part in order to perform upstream analysis to get cell annotation results. 
 
-<p align="center"><img src="../pic/downstreamAnalysisUpload.png" alt="downstreamAnalysisUpload" style="zoom:33%;" /></p>
+3. RNA-seq read count data should be in the form of a sparse matrix or dataframe, where each row represents a gene, and each column represents a cell. The row names of the matrix should correspond to the gene symbols. If your dataset includes column names, please check the "Header" checkbox located below "Choose your group or design file".
 
-If you have cell annotation results(which means you know what cell type is for each cell sample), you can upload your data in the "Downstream analysis data" part. RNA-seq read count data in this part has the same format as that in the "Upstream analysis" part. But in the cell type and group file upload, you should upload a file with your cell annotation information for each cell sample. The file should have one or two columns. The first column should be your cell annotation result and the second column should be your group or design information, which is optional. Similarly, **don't include the row name in your data**. 
+4. The group or design file is used to assign each cell sample to an experimental condition, and while it's optional, we recommend uploading it to obtain meaningful analysis results. This file should be in CSV or RDS format and should consist of a single-column data frame. The number of rows in this file should be equal to the number of cells in the read count data. Please ensure that you do not include row names in your data.
 
-Here we provide you with a sample script about how to process data file and generate RDS file used for upstream analysis data uploading:
+    <p align="center"><img src="../pic/downstreamAnalysisUpload.png" alt="Upload downstream data panel" style="zoom:33%;" /></p>
+
+5. If you have cell annotation results (meaning you already know the cell type for each cell sample), you can upload your data in the "Uploading Downstream Analysis Data" section. The requirements for RNA-seq read count data are the same as in the "Upstream Analysis" section. However, when uploading the cell type and group file, you should provide a file containing your cell annotation information for each cell sample, along with the optional group or design information. This file should consist of one or two columns. The first column should contain your cell annotation results, and the second column, if included, should contain your group or design information. As with previous uploads, please do not include row names in your data.
+
+6. Currently, we only accept files with sizes less than 8GB to avoid memory issue. But you can change it if you want to upload large file in `server.R` by changing:
+    `options(shiny.maxRequestSize = 8000 * 1024 ^ 2)`
+
+
+Here, we provide you with a sample R script demonstrating how to process data files and generate an RDS file for upstream analysis data uploading:
 
 ```R
 library(Matrix)
 
-#Read data in to memory
+# Read data in to memory
 data<-readMM("read_count_matrix.mtx")
 
-#Read gene symbol data
+# Read gene symbol data
 genes<-read.csv("genes.tsv",sep="\t",header = 0)
 
-#Read barcode data, this is optional
+# Read barcode data, this is optional
 barcode<-read.csv("barcodes.tsv",sep="\t",header = 0)
 
-#Convert data to matrix format
+# Convert data to matrix format
 data<-as.matrix(data)
 
-#Assign gene symbol to data matrix
+# Assign gene symbol to data matrix
 rownames(data)<-genes$gene_symbol
 colnames(data)<-barcode$V1
 
-#Check and remove all duplicated gene from data
-#Here we will retain the gene that have maximum variance among all data that have same gene symbol
+# Check and remove all duplicated gene from data
+# Here we will retain the gene that have maximum variance among all data that have same gene symbol
 gene_variance<-apply(data,1,var)
 data<-data[order(gene_variance,decreasing=T),]
 data<-total_data[!duplicated(e10_gene$V2),]
 
-#Finally, save data as RDS file
+# Finally, save data as RDS file
 saveRDS(data,file="data.RDS")
 
-#generate group or design file for upstream analysis
+# Generate group or design file for upstream analysis
 #This is just fake data that is used to give you a sense about the format of group file.
-#Here, number of row in group list(num_group1+num_group2) must be equal to the cell in read count data
+# Here, number of row in group list(num_group1+num_group2) must be equal to the cell in read count data
 group_list<-as.character(c(rep("group1",num_group1),rep("group2",num_group2)))
 group_list<-data.frame(group_list)
 saveRDS(group_list,file="group.RDS")
@@ -73,34 +78,20 @@ saveRDS(group_list,file="group.RDS")
 
 ## Process Drug File 
 
-In the cell-cell communication and drug discovering analysis, sc2MeNetDrug needs a Connectivity Map database in order to build a drug rank matrix. However, since we cannot directly include this data in sc2MeNetDrug, the user needs to download raw data from a website. sc2MeNetDrug can help the user to process data and unlock cell-cell communication and drug discovering analyses. You can find more information about the Connectivity Map data [here](https://docs.google.com/document/d/1q2gciWRhVCAAnlvF2iRLuJ7whrGP6QjpsCMq1yWz7dU/edit). 
+For cell-cell communication and drug discovery analysis, sc2MeNetDrug requires a Connectivity Map database to construct a drug ranking matrix. As we can't include this data directly into sc2MeNetDrug, users must download the raw data from a website. sc2MeNetDrug then assists users in processing this data, enabling cell-cell communication and drug discovery analyses. More details about the Connectivity Map data are available [here](https://docs.google.com/document/d/1q2gciWRhVCAAnlvF2iRLuJ7whrGP6QjpsCMq1yWz7dU/edit). 
 
-First, you need to go to the[NCBI website](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742) and download following data:
+1. First, go to the [NCBI website](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742) and download the following data:
 
-* `GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz`
-* `GSE92742_Broad_LINCS_gene_info.txt.gz`
-* `GSE92742_Broad_LINCS_sig_info.txt.gz`
-* `GSE92742_Broad_LINCS_pert_info.txt.gz`
+   * `GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz`
+   * `GSE92742_Broad_LINCS_gene_info.txt.gz`
+   * `GSE92742_Broad_LINCS_sig_info.txt.gz`
+   * `GSE92742_Broad_LINCS_pert_info.txt.gz`
 
-Next, put all data files into one directory. Unzip the data files to create .txt or .gctx files from the .gz formatted files. Open sc2MeNetDrug, find "Drug File Processing" in the "Upload Data" section. Click the "Select Drug File Directory" button and select the directory where you put the data you downloaded. Finally, click the blue button "Process Drug Data" to start processing. After processing, you should unlock cell-cell communication and drug discovering analyses. if not, you can try click "load data" button in "Gene Expression" section or reopen the sc2MeNetDrug. 
+2. Place all data files in a single directory. Extract the .gz files to obtain .txt or .gctx files. Launch sc2MeNetDrug and go to the "Upload Data" section. Under "Drug File Processing", click "Select Drug File Directory" and choose the directory containing your downloaded data. Then, hit the "Process Drug Data" button. Once processed, cell-cell communication and drug discovery analyses should be available. If not, click the "load data" button in the "Gene Expression" section or restart sc2MeNetDrug.
 
-We recommend you to process drug file before you load data into sc2MeNetDrug, cause the process will consume large memory and may run out of memory if your computer's memory is not enough.
+3. We recommend processing the drug file before loading data into sc2MeNetDrug, as the process can consume significant memory. If your computer has limited memory, it may run out during this step.
 
-In Windows or Mac version, **You don't need to process data twice even if you restart the application or change the working directory cause the processed file has already saved**. But in docker container, to appropriately save processed file, you need to commit the change in container and build a new local image. To do that, after drug file processing finish, close the docker container and run following code in terminal:
-
-```
-docker ps -l
-```
-
-Then, you will see all the containers that have changed. Find the sc2MeNetDrug and corresponding `CONTAINER ID`. Next, run following code in terminal:
-
-```
-docker commit CONTAINER_ID fuhaililab/sc2menetdrug
-```
-
-Where `CONTAINER_ID` is the container id you find. 
-
-
+4. You only need to process the drug file once. After processing, it's saved in the application directory and remains available for future use.
 
 ## Video Demonstration
 

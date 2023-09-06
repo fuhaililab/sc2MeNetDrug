@@ -9,7 +9,7 @@ parent: Gene Expression, Communication and Drug Discovering
 
 ## Introduction
 
-You can find this analysis in the "Gene Expression" section. EMT-PRO analysis can help you characterize epithelial-to-mesenchymal transition (EMT) and proliferative (PRO) phenotypes for specific cell types in design or test conditions if such conditions are provided.  
+You can find this analysis in the "Gene Expression" section. EMT-PRO analysis can characterize epithelial-to-mesenchymal transition (EMT) and proliferative (PRO) phenotypes for specific cell types in design or test conditions if such conditions are provided.  
 
 First, you need to select which cell type and which design or test group you want to analyze. Then, click the blue "Compute EMT-PRO score" button to start computation.
 

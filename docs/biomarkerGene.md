@@ -12,27 +12,25 @@ nav_order: 8
 
 ## Introduction
 
-In order to do cell annotation, you need marker genes for each cell type. Here we collect biomarker genes for more than 50 different cell types.
+To perform cell annotation, marker genes for each cell type are essential. We have gathered biomarker genes for over 50 distinct cell types.
 
-<p align="center"><img src="../pic/markerGeneSea.png" alt="markerGeneSea" style="zoom:80%;" /></p>
+<p align="center"><img src="../pic/markerGeneSea.png" alt="Marker gene database" style="zoom:80%;" /></p>
 
-You can see the detailed gene list for cell type by clicking the bubble in the plot or you can find them in the table:
+You can view the detailed gene list for each cell type by clicking on the bubble in the plot, or you can locate them in the provided table:
 
-<p align="center"><img src="../pic/markerGeneTable.png" alt="markerGeneTable" style="zoom:50%;" /></p>
+<p align="center"><img src="../pic/markerGeneTable.png" alt="Marker gene table" style="zoom:50%;" /></p>
 
-Each column represents a cell type and each row represents a gene. If the value is 1, this gene is a marker of this cell type. 
+Each row is a cell-marker gene pair. 
 
 ### Edit Marker Gene Table
 
-If you have your own marker gene, you can click the blue button "Add new gene" to add a new marker gene. Once you click the button, you can find the new row in the last page with the gene symbol as "newGene", you can then edit the name and change the value from 0 to 1 in the corresponding cell type in the table directly. If you want to add a new cell type, you need to first enter the name of cell type in the text input frame and then click the button "Add new cell". Then you can scroll to the right of table and find your new cell type column. You can also delete or retrieve original marker gene tables by clicking the "Delete selected gene" or the "Original gene table" button, respectively.
+Since this marker gene table will be used in the cell annotation section, we provide user with interface to add or modify the marker gene database based on their on scRNA dataset.
+
+* **To delete an existing cell-marker gene pair**: You can do it by first click the corresponding row in the marker gene table. Then, click "Delete selected gene" button to delete this row.
+* **To add new cell-marker gene pairs**: Use the bottom right panel. Begin by entering the cell type name in the first input box. Next, select the marker genes you wish to add from the second input box. You can choose multiple genes simultaneously. Lastly, click "add new gene" to incorporate them into the marker gene table.
+* **Modify an existing cell-marker gene pair**: You can directly double-click the table cell in the marker gene table to modify it.
+
 
 ### Save Edited Marker Gene Table
 
-You can save and use modified marker gene table in the next time. To do that, after you modified table, click blue button "Save current marker gene table", the modified marker gene table will be saved to working directory within file `markerGeneTable.RData`. Next time, whenever you set the working directory, the saved marker gene table will be loaded in to sc2MeNetDrug automatically. Notice that you need to first set appropriate working directory before you save marker gene table.
-
-
-
-## Video Demonstration
-
-<iframe width="700" height="485" src="https://www.youtube.com/embed/_eBaJk48Qto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+After making modifications, you can save the updated marker gene table for future use. Once you've edited the table, click the blue "Save current marker gene table" button. The revised table will be saved to the working directory as markerGeneTable.RData. In subsequent sessions, if you work from the directory containing the saved markerGeneTable.RData, the application will load your saved data instead of the default table.

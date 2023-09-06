@@ -11,11 +11,9 @@ parent: Gene Expression, Communication and Drug Discovering
 
 You can find GO analysis in the "Gene Expression" section. GO analysis allows you to discover potential gene ontology processes.
 
-First, you need to select the cell type you want to test, set the up-regulated log fold change threshold value, the down-regulated log fold change threshold value and the p-value threshold value as well as the control and test groups, where the test group is the group where the results will be obtained. Then click the blue "GO Analysis" button to start analysis.
+First, select the cell type you wish to analyze. Set the thresholds for up-regulated log fold change, down-regulated log fold change, and p-value. Specify the control and test groups, with the test group being where the results are derived from. Once set, click the blue 'GO Analysis' button to begin the analysis.
 
 <p align="center"><img src="pic/GOAnalysis.png" alt="GOAnalysis" style="zoom:50%;" /></p>
-
-
 
 After computation, you can see results table on the right. Results consist of two tables. The first is GO information for up-regulated genes and the second is GO information for down-regulated genes. In the table, the first column is the GO ID, the second column is the GO name, the third column is the type of GO, the fourth column is the number of genes in the GO, and the last column is the p-value. You can switch the two tables on the top.
 

@@ -9,47 +9,44 @@ nav_order: 9
 
 ## Introduction
 
-This part is only available after you upload data in the "Upstream analysis Data" part and finish clustering analysis. Cell annotation allows you to annotate cell type for each cell sample in the dataset based on clustering results and expression information. Before doing the cell annotation analysis, you need to select a candidate cell type in the bottom right of the "Biomarker Gene" section:
+This section becomes accessible only after uploading data under the "Upstream Analysis Data" and completing the clustering analysis. Cell annotation enables the identification of cell types for each cell sample in the dataset, using clustering outcomes and expression data.
 
-<p align="center"><img src="../pic/cellTypeSelect.png" alt="cellTypeSelect" style="zoom:40%;" /></p>
+<p align="center"><img src="../pic/cellAnnotationPanel.png" alt="Cell annotation panel" style="zoom:40%;" /></p>
 
-The cell type for each cell will only be chosen from the cell type you selected. We also provide common cell type combinations for Alzheimer's disease and Pancreatic cancer, and you can use it directly by clicking the blue buttons labeled "Alzheimer's disease" or "Pancreatic cancer".
+1. First, in the cell annotation panel above, select all the cell types to be included in the cell annotation analysis. Note that the list encompasses all the different cell types present in the marker gene table. If you've modified the table, this list will update automatically.
 
-After you select the cell type list, you can click the blue button "Cell Annotation" in the cell annotation section. Meanwhile, you can choose to use main clustering results or sub-clustering results to do cell annotation by checking or unchecking the "Use sub-clustering result" check box.
+2. We also offer preset cell type combinations for Alzheimer's disease and Pancreatic cancer. You can apply these directly by clicking the blue buttons labeled "Alzheimer's disease" or "Pancreatic cancer".
 
-<p align="center"><img src="../pic/annotation.png" alt="annotation" style="zoom:50%;" /></p>
+3. After you select the cell type list, you can click the blue button "Cell Annotation" in the cell annotation section. 
 
-After computation, you can see the results of cell annotation in :
+4. After computation, you can see the results of cell annotation in :
 
-<p align="center"><img src="../pic/annotationResult.png" alt="annotationResult" style="zoom:80%;" /></p>
+    <p align="center"><img src="../pic/annotationResult.png" alt="Annotation result" style="zoom:80%;" /></p>
 
-We also provide cell annotation result for each cluster:
+    We also provide cell annotation result for each cluster:
 
-<p align="center"><img src="../pic/annotationResult2.png" alt="annotationResult2" style="zoom:80%;" /></p>
+    <p align="center"><img src="../pic/annotationResult2.png" alt="Annotation result2" style="zoom:80%;" /></p>
+
+5. Finally, we also provide a manual label correction panel in the bottom left side if you want to modify the result computed by the sc2MeNetDrug. You can modify the result by directly click the table cell and type the new cell type for each cluster.
+       
+    <p align="center"><img src="../pic/cellAnnotationCorrection.png" alt="Cell annotation correction panel" style="zoom:80%;" /></p>
 
 ## Data
 
 After cell annotation, you will get three `.RData` files in your working directory:
 
-* `annotation_es.RData` : This file saves the enrichment score result for each cluster in each cell marker gene set in a data frame variable named as `annotation_es`, where each column represents each cell and each row represents each cluster.
-* `annotation_result.RData`: Saves classification results for each cluster in a data frame variable named as `annotation_result` . The first column is the cluster, the second column is the corresponding cell type and the third column is the combination of cluster and cell type used for visualization.
+* `annotation_es.RData` : This file stores the enrichment score results for each cluster within each cell marker gene set in a data frame variable named `annotation_es`. In this frame, each column represents a cell, while each row corresponds to a cluster.
+* `annotation_result.RData`: The classification results for each cluster are stored in this file in a data frame variable named `annotation_result`. The first column represents the cluster, the second column indicates the corresponding cell type, and the third column combines the cluster and cell type for visualization purposes.
 * `cell_annotation.RData`: This file saves the cell type for each cell in a data frame variable named as `cell_annotation`. 
-
-
-
-## Video Demonstration
-
-<iframe width="700" height="485" src="https://www.youtube.com/embed/Ssd2Rg8Zf_g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 
 
 ## Methodology
 
-Cell annotation in sc2MeNetDrug is computed using Gene Set Enrichment Analysis (GSEA)<sup>1</sup>. After the user selects candidate cell types in the "Biomarker Gene" section and starts computation, the application will compute the log fold change for cluster \(N​\) using the following formula:
+Cell annotation in sc2MeNetDrug is computed using Gene Set Enrichment Analysis (GSEA)<sup>1</sup>. After the user selects candidate cell types in the "Biomarker Gene" section and starts computation, the application will compute the log fold change for cluster \(N\) using the following formula:
+
 \\[\text{log fold change for cluster N}=\text{mean expression for cluster N}-{\text{mean expression for other cells}}\\]
 
-Then we order the genes based on log fold changes as genes rank and compute enrichment scores of marker gene sets for each candidate cell type. Finally, the cell type with the largest enrichment score will be selected as the type of this cluster. However, if none of the cell types have a positive enrichment score, the cluster will be annotated as unknown. 
-
+Next, we rank the genes based on log fold changes and calculate the enrichment scores of marker gene sets for each prospective cell type. Ultimately, the cell type with the highest enrichment score is chosen as the designated type for that cluster. If none of the cell types yield a positive enrichment score, the cluster is labeled as unknown.
 
 
 ## References
