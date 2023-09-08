@@ -50,3 +50,7 @@ rsconnect/
 .idea
 docs/_site
 docs/.jekyll-cache
+R/cache
+R.R_proj
+R/data/drug_mapping.RData
+R/data/rankMatrix92742a.RData
