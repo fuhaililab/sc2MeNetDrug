@@ -156,7 +156,7 @@ preprocessingEvent <-
         loadDimensionReduction()
       }
       else{
-        type_list <- as.character(data@meta.data["cell_type"])
+        type_list <- rv$network_type_list
         if (!is.null(group_list)) {
           group_list <- as.character(Idents(data))
           group_type_list <- paste(group_list, type_list, sep = "_")
@@ -167,21 +167,11 @@ preprocessingEvent <-
         }
         
         save(data, file = paste0(rv$outputDir, "/network_df.RData"))
-        save(type_list,
-             file = paste0(rv$outputDir, "/networkTypeInformation.RData"))
-        if (!is.null(group_list)) {
-          save(group_list,
-               file = paste0(rv$outputDir, "/networkGroupInformation.RData"))
-        }
-        
-        rv$network_type_list <- type_list
-        rv$network_gene_list <- rownames(data)
-        rv$network_group_list <- group_list
         rv$network_df <- data
         
         drop_num_cell <- raw_num_cell - final_num_cell
         
-        rm(data, group_list, gene_list, type_list)
+        rm(data, group_list, type_list)
         gc()
         #load ExpressionPart
         loadGeneExpression1()
@@ -682,7 +672,7 @@ communicationEvent <- function(input, rv, session) {
         if (is.null(testGroup) || is.null(normalGroup)) {
           stop(safeError("empty input"))
         }
-        group_list <- rv$rna_group_list
+        group_list <- rv$network_group_list
         
       }
     }

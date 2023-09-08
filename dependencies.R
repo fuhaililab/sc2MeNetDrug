@@ -1,6 +1,6 @@
 install.packages(c("shinydashboard", "shiny", "shinyjs", "shinyBS", "plotly", "r2d3", "DT",
                  "stringr", "shinyFiles", "fs", "data.table", "jsonlite", "dplyr", "Seurat",
-                 "igraph", "fingerprint", "rcdk", "remotes", "R.utils"))
+                 "igraph", "fingerprint", "rcdk", "remotes", "R.utils", "apcluster"))
 
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
