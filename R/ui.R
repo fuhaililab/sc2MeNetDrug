@@ -26,6 +26,7 @@ library(igraph)
 library(rcdk)
 library(fingerprint)
 library(glmGamPoi)
+library(apcluster)
 dashboardPage(
   title = "sc2MeNetDrug",
   skin = "green",

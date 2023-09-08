@@ -370,13 +370,13 @@ loadNetworkData <- function(rv, progress) {
   progress$set(0.6, detail = "Reload communication data")
   if (file.exists(paste0(rv$outputDir, "/network_df.RData"))) {
     load(paste0(rv$outputDir, "/network_df.RData"))
-    rv$network_df <- seurat_data
+    rv$network_df <- data
     rv$network_gene_list <- rownames(rv$network_df)
     rv$network_num_sample <- ncol(rv$network_df)
     load(paste0(rv$outputDir, "/networkTypeInformation.RData"))
     rv$network_type_list <- type_list
     loadGeneExpression1()
-    rm(seurat_data, type_list)
+    rm(data, type_list)
     gc()
   } else{
     return (-1)

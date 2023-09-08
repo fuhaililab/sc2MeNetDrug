@@ -729,8 +729,7 @@ loadCommunicationFile <- function(input, rv, session) {
       network_df <- Matrix(as.matrix(network_df), sparse = TRUE)
     } else if (tolower(suffix) == "rds") {
       network_df <- readRDS(input$networkDataFile$datapath)
-      if (class(network_df)[1] == "Seurat" &
-          class(network_df)[2] == "SeuratObject") {
+      if (class(network_df)[1] == "Seurat") {
         network_df <- network_df[["RNA"]]@counts
       } else if (class(network_df)[1] != "dgCMatrix") {
         stop(safeError("invalid data"))
@@ -819,8 +818,7 @@ loadNetworkGroupFile <- function(input, rv, session) {
     } else if (num_col == 2) {
       type_list <- as.character(df[, 1])
       rv$network_type_list <- type_list
-      save(type_list,
-           file = paste0(rv$outputDir, "/networkTypeInformation.RData"))
+      save(type_list, file = paste0(rv$outputDir, "/networkTypeInformation.RData"))
       group_list <- as.character(df[, 2])
       unique_group <- unique(group_list)
       if (length(unique_group) <= 1 ||
