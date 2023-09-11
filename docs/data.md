@@ -44,16 +44,13 @@ Here, we provide you with a sample R script demonstrating how to process data fi
 library(Matrix)
 
 # Read data in to memory
-data<-readMM("read_count_matrix.mtx")
+data<-as.matrix(readMM("read_count_matrix.mtx"))
 
 # Read gene symbol data
 genes<-read.csv("genes.tsv",sep="\t",header = 0)
 
 # Read barcode data, this is optional
 barcode<-read.csv("barcodes.tsv",sep="\t",header = 0)
-
-# Convert data to matrix format
-data<-as.matrix(data)
 
 # Assign gene symbol to data matrix
 rownames(data)<-genes$gene_symbol
@@ -63,7 +60,10 @@ colnames(data)<-barcode$V1
 # Here we will retain the gene that have maximum variance among all data that have same gene symbol
 gene_variance<-apply(data,1,var)
 data<-data[order(gene_variance,decreasing=T),]
-data<-total_data[!duplicated(e10_gene$V2),]
+data<-data[!duplicated(genes$V2),]
+
+# Convert data to dgCMatrix format
+data<-Matrix(data, sparse=TRUE)
 
 # Finally, save data as RDS file
 saveRDS(data,file="data.RDS")
