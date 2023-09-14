@@ -60,6 +60,28 @@ To normalize scRNA-seq read count data, we use `sctransform` function with `glmG
 
 Imputation is carried out using the runALRA function from the Seurat package with default settings. This method<sup>1</sup> calculates the k-rank approximation for A_norm and modifies it based on the error distribution derived from negative values.
 
+## Advanced Hyper-parameter Tuning
+All main functions used in preprocessing module can be located in `R/preprocessing.R`. Users can adjust all hyper-parameters used in preprocessing in this file.
+
+For quality control, locate the following line in the file:
+```R
+seurat_data <- subset(seurat_data, subset = nFeature_RNA > 200 & nFeature_RNA < 7500 & percent.mt < 10)
+```
+
+To change the criteria for cell quality control to: cells with a detected gene count of less than 300 or more than 3000, cells with >5% mitochondrial counts are removed, users can modify the above code to:
+```R
+seurat_data <- subset(seurat_data, subset = nFeature_RNA > 300 & nFeature_RNA < 3000 & percent.mt < 5)
+```
+To include other criteria, please check [Seurat documents](https://satijalab.org/seurat/) for more information. 
+
+For imputation, locate the following main function in the file:
+```R
+seurat_data <- RunALRA(seurat_data, assay = seurat_data@active.assay)
+```
+Please see [examle](https://github.com/satijalab/seurat-wrappers/blob/master/docs/alra.md) and [document](https://www.rdocumentation.org/packages/Seurat/versions/3.1.4/topics/RunALRA) for more information and parameters used in the imputation.
+Users can modify the parameters used in imputation by adjust the above function. Make sure to keep `assay = seurat_data@active.assay` to allow the imputation to be computed in the correct dataset.
+
+**Importance:** After modifying the file, please make sure to restart the application to let modified parameters to be effective.
 
 ## References
 

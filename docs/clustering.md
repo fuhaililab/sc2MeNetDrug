@@ -26,6 +26,31 @@ After clustering, you will obtain one `.RData` files in your working directory:
 
 * `clusters.RData`:  An data.frame variable named `clusters` saves the clustering result for each cell in the dataset.
 
+
+## Advanced Hyper-parameter Tuning
+All main functions used in clustering module can be located in `R/clustering.R`. Users can adjust all hyper-parameters used in clustering in this file.
+
+For KNN algorithm, change the parameters by changing the following code in the file:
+
+```R
+seurat_data <- FindNeighbors(seurat_data,
+                               reduction="pca",
+                               dims = 1:nPC,
+                               verbose = FALSE)
+```
+
+Please see more information and changeable parameters about this function in [document](https://satijalab.org/seurat/reference/findneighbors).
+
+For Louvain algorithm, change the parameters by changing the following code in the file:
+
+```R
+seurat_data <- FindClusters(seurat_data,
+                              resolution = resolution,
+                              verbose = FALSE)
+```
+
+Please see more information and changeable parameters about this function in [document](https://satijalab.org/seurat/reference/findclusters).
+
 ## Methodology
 
 The clustering analysis in sc2MeNetDrug is conducted using the FindNeighbors and FindClusters functions from the Seurat package. The FindNeighbors function applies KNN on the selected PCs to gather neighboring information for each cell. Subsequently, the FindClusters function leverages this information to execute the Louvain algorithm, generating the clustering results.
