@@ -23,6 +23,6 @@ PCA <- function(seurat_data) {
 #'
 #' @examples
 UMAP <- function(seurat_data, nPC) {
-  seurat_data <- RunUMAP(seurat_data, dims = 1:nPC, verbose = FALSE)
+  seurat_data <- RunUMAP(seurat_data, reduction="pca", dims = 1:nPC, verbose = FALSE)
   seurat_data
 }

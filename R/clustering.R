@@ -10,6 +10,7 @@
 #'
 find_neighbors <- function(seurat_data, nPC) {
   seurat_data <- FindNeighbors(seurat_data,
+                               reduction="pca",
                                dims = 1:nPC,
                                verbose = FALSE)
   seurat_data

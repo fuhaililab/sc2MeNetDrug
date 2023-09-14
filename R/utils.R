@@ -210,7 +210,7 @@ processDrugClusteringDisplay <- function(drug_node, drug_network) {
 
 
 setRnaDataIdents <- function(rv) {
-  
+  data <- rv$rna_df
   if (!is.null(rv$rna_group_list)) {
     ident_list <-
       paste(rv$rna_group_list, rv$rna_type_list, sep = "_")
@@ -218,15 +218,18 @@ setRnaDataIdents <- function(rv) {
   } else{
     ident_list <- rv$rna_type_list
   }
+  
   if (sum(Idents(data) == ident_list) == length(ident_list)) {
+    rm(ident_list)
     return (0)
   }
   else {
-    data <- SetIdent(rv$rna_df, value = ident_list)
-    rm(group_type_list)
-    # rv$rna_df <- data
-    # save(data, file = paste0(rv$outputDir, "/rna_df.RData"))
+    data <- SetIdent(data, value = ident_list)
+    rv$rna_df <- data
+    save(data, file = paste0(rv$outputDir, "/rna_df.RData"))
+    rm(data, ident_list)
+    
   }
-
+  gc()
 }
   

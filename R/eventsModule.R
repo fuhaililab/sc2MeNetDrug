@@ -513,13 +513,20 @@ classificationEvent <- function(input, rv, session) {
 geneExpressionDataLoadingEvent <- function(input, rv, session) {
   #load corresponding data user choose,
   tryCatch({
+    loadingProgress <- shiny::Progress$new()
+    loadingProgress$set(message = "Loading data", value = 0)
+    on.exit(loadingProgress$close())
+    
     if (input$dataUseSelect == 1) {
       if (is.null(rv$df_classify) || is.null(rv$rna_df)) {
         stop(safeError("noRnaData"))
       }
       rv$useRnaData = 1
       loadRnaDataSelection(rv)
+      loadingProgress$inc(0.2, detail = "Set and save identity information for Seurat object.")
       setRnaDataIdents(rv)
+      loadingProgress$inc(0.8, detail = "Compute cell distribution.")
+      
       if (rv$rna_have_group == 0) {
         cell_count <- cellDistribution(rv$rna_type_list, NULL)
         rv$cell_count <- cell_count
@@ -539,6 +546,7 @@ geneExpressionDataLoadingEvent <- function(input, rv, session) {
       }
       rv$useRnaData = 0
       loadNetworkDataSelection(rv)
+      loadingProgress$inc(0.8, detail = "Compute cell distribution.")
       if (rv$network_have_group == 0) {
         cell_count <- cellDistribution(rv$network_type_list, NULL)
         rv$cell_count <- cell_count
@@ -571,6 +579,8 @@ geneExpressionDataLoadingEvent <- function(input, rv, session) {
     useRnaData = rv$useRnaData
     save(useRnaData,
          file = paste0(rv$outputDir, "/lastAnalysisDataIndex.RData"))
+    loadingProgress$inc(1, detail = "Finish")
+    
     
   },
   error = function(e) {
