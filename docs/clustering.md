@@ -51,6 +51,8 @@ seurat_data <- FindClusters(seurat_data,
 
 Please see more information and changeable parameters about this function in [document](https://satijalab.org/seurat/reference/findclusters).
 
+**Importance:** After modifying the file, please make sure to restart the application to let modified parameters to be effective.
+
 ## Methodology
 
 The clustering analysis in sc2MeNetDrug is conducted using the FindNeighbors and FindClusters functions from the Seurat package. The FindNeighbors function applies KNN on the selected PCs to gather neighboring information for each cell. Subsequently, the FindClusters function leverages this information to execute the Louvain algorithm, generating the clustering results.
