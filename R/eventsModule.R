@@ -156,9 +156,13 @@ preprocessingEvent <-
         loadDimensionReduction()
       }
       else{
-        type_list <- rv$network_type_list
+        
+        type_list <- data@meta.data$cell_type
+        
         if (!is.null(group_list)) {
           group_list <- as.character(Idents(data))
+          save(group_list,
+               file = paste0(rv$outputDir, "/networkGroupInformation.RData"))
           group_type_list <- paste(group_list, type_list, sep = "_")
           data <-
             SetIdent(data, value = group_type_list)
@@ -168,6 +172,8 @@ preprocessingEvent <-
         
         save(data, file = paste0(rv$outputDir, "/network_df.RData"))
         rv$network_df <- data
+        
+
         
         drop_num_cell <- raw_num_cell - final_num_cell
         
@@ -288,7 +294,6 @@ drEvent <- function(input, rv, session) {
     progress$set(1, detail = "Finish")
   },
   error = function(e) {
-    print(e)
     createAlert(
       session = session,
       anchorId = "errorAlert",
@@ -533,8 +538,6 @@ geneExpressionDataLoadingEvent <- function(input, rv, session) {
         rv$distribution_have_group = 0
         
       } else{
-        print(rv$rna_type_list)
-        print(rv$rna_group_list)
         cell_count <-
           cellDistribution(rv$rna_type_list, rv$rna_group_list)
         rv$cell_count <- cell_count
@@ -641,12 +644,9 @@ communicationEvent <- function(input, rv, session) {
     fc_downThres <- input$networkDFc
     
     fcDir <- paste0(rv$outputDir, "/cellCommunication")
-    networkDir <-
-      paste0("/", paste(
-        paste(rv$cell_type1, collapse = "+"),
-        paste(rv$cell_type2, collapse = "+"),
-        sep = "-"
-      ))
+    if (!dir.exists(fcDir)) {
+      dir.create(fcDir)
+    }
     
     if (rv$useRnaData == 1) {
       data = rv$rna_df
@@ -656,6 +656,13 @@ communicationEvent <- function(input, rv, session) {
         testGroup <- NULL
         normalGroup <- NULL
         group_list <- NULL
+        
+        networkDir <-
+          paste0("/", paste(
+            paste(rv$cell_type1, collapse = "+"),
+            paste(rv$cell_type2, collapse = "+"),
+            sep = "-"
+          ))
       }
       else {
         testGroup <- input$controlGroup
@@ -663,6 +670,15 @@ communicationEvent <- function(input, rv, session) {
         if (is.null(testGroup) || is.null(normalGroup)) {
           stop(safeError("empty input"))
         }
+        networkDir <-
+          paste0("/", paste(
+            paste(rv$cell_type1, collapse = "+"),
+            paste(rv$cell_type2, collapse = "+"),
+            paste(normalGroup, collapse = "+"),
+            paste(testGroup, collapse = "+"),
+            sep = "-"
+          ))
+        
         group_list <- rv$rna_group_list
       }
     }
@@ -674,6 +690,12 @@ communicationEvent <- function(input, rv, session) {
         testGroup <- NULL
         normalGroup <- NULL
         group_list <- NULL
+        networkDir <-
+          paste0("/", paste(
+            paste(rv$cell_type1, collapse = "+"),
+            paste(rv$cell_type2, collapse = "+"),
+            sep = "-"
+          ))
         
       }
       else {
@@ -684,8 +706,24 @@ communicationEvent <- function(input, rv, session) {
         }
         group_list <- rv$network_group_list
         
+        networkDir <-
+          paste0("/", paste(
+            paste(rv$cell_type1, collapse = "+"),
+            paste(rv$cell_type2, collapse = "+"),
+            paste(normalGroup, collapse = "+"),
+            paste(testGroup, collapse = "+"),
+            sep = "-"
+          ))
+        
       }
     }
+    
+    netDir <- paste0(fcDir, networkDir)
+    if (!dir.exists(netDir)) {
+      dir.create(netDir)
+    }
+    
+    
     result <-
       communication(
         data = data,
@@ -698,7 +736,7 @@ communicationEvent <- function(input, rv, session) {
         pv_thres = pv_thres,
         cell_type1 = rv$cell_type1,
         cell_type2 = rv$cell_type2,
-        outputDir = rv$outputDir,
+        netDir = netDir,
         ligRecDatabase = rv$ligRecDatabase,
         TfTargetInteraction = rv$TfTargetInteraction,
         keggInfo = rv$keggInfo,
@@ -727,33 +765,37 @@ communicationEvent <- function(input, rv, session) {
         paste(rv$cell_type2, collapse = "+"),
         sep = "_"
       ))
-    if (!file.exists(network1Dir)) {
+    
+    if (!dir.exists(network1Dir)) {
       dir.create(network1Dir)
     }
+    
     network2Dir <-
       paste0(netDir, "/", paste(
         paste(rv$cell_type2, collapse = "+"),
         paste(rv$cell_type1, collapse = "+"),
         sep = "_"
       ))
-    if (!file.exists(network2Dir)) {
+    if (!dir.exists(network2Dir)) {
       dir.create(network2Dir)
     }
     
     
     
     type1_to_type2_result <- result[[2]]
-    activated_network_nodes2 <- type1_to_type2_result[[1]]
-    activated_network_edges2 <- type1_to_type2_result[[2]]
-    downstream_network_nodes1 <- type1_to_type2_result[[3]]
-    downstream_network_edges1 <- type1_to_type2_result[[4]]
+    network_infor1 <- type1_to_type2_result[[1]]
+    activated_network_nodes2 <- type1_to_type2_result[[2]]
+    activated_network_edges2 <- type1_to_type2_result[[3]]
+    downstream_network_nodes1 <- type1_to_type2_result[[4]]
+    downstream_network_edges1 <- type1_to_type2_result[[5]]
     
     
     type2_to_type1_result <- result[[3]]
-    activated_network_nodes1 <- type2_to_type1_result[[1]]
-    activated_network_edges1 <- type2_to_type1_result[[2]]
-    downstream_network_nodes2 <- type2_to_type1_result[[3]]
-    downstream_network_edges2 <- type2_to_type1_result[[4]]
+    network_infor2 <- type2_to_type1_result[[1]]
+    activated_network_nodes1 <- type2_to_type1_result[[2]]
+    activated_network_edges1 <- type2_to_type1_result[[3]]
+    downstream_network_nodes2 <- type2_to_type1_result[[4]]
+    downstream_network_edges2 <- type2_to_type1_result[[5]]
     
     
     rm(
@@ -834,6 +876,7 @@ communicationEvent <- function(input, rv, session) {
     
     if (!is.null(activated_network_nodes1)) {
       save(
+        network_infor1,
         activated_network_nodes1,
         activated_network_edges1,
         cell_type1,
@@ -878,6 +921,7 @@ communicationEvent <- function(input, rv, session) {
     
     if (!is.null(activated_network_nodes2)) {
       save(
+        network_infor2,
         activated_network_nodes2,
         activated_network_edges2,
         cell_type2,
@@ -1054,6 +1098,7 @@ communicationEvent <- function(input, rv, session) {
     
     save(cell_type1,
          cell_type2,
+         netDir,
          file = paste0(rv$outputDir, "/lastNetworkIndexing.RData"))
     rm(
       targetDrug1,
@@ -1608,6 +1653,11 @@ GOEvent <- function(input, rv, session) {
     dnFc_thres <- input$GODnFc
     pv_thres <- input$GOPValue
     
+    fcDir <- paste0(rv$outputDir, "/GeneOntology")
+    if (!dir.exists(fcDir)) {
+      dir.create(fcDir)
+    }
+    
     if (is.null(cell_type)) {
       stop(safeError("empty input"))
     }
@@ -1618,16 +1668,26 @@ GOEvent <- function(input, rv, session) {
       if (rv$rna_have_group == 0) {
         t_keep_index <- rv$rna_type_list %in% cell_type
         n_keep_index <- !rv$rna_type_list %in% cell_type
-        
+        GoDir <- paste0(fcDir, paste0("/", paste(cell_type, collapse = "+")))
+
       }
       else{
         testGroup <- input$GOTestGroup
         normalGroup <- input$GONormalGroup
         
+        
         t_keep_index <- rv$rna_type_list == cell_type &
           rv$rna_group_list %in% testGroup
         n_keep_index <- rv$rna_type_list == cell_type &
           rv$rna_group_list %in% normalGroup
+        
+        GoDir <-
+          paste0(fcDir, paste0("/", paste(
+            paste(cell_type, collapse = "+"),
+            paste(normalGroup, collapse = "+"),
+            paste(testGroup, collapse = "+"),
+            sep = "-"
+          )))
       }
     }
     else {
@@ -1637,18 +1697,31 @@ GOEvent <- function(input, rv, session) {
       if (rv$network_have_group == 0) {
         t_keep_index <- rv$network_type_list %in% cell_type
         n_keep_index <- !rv$network_type_list %in% cell_type
+        GoDir <- paste0(fcDir, paste0("/", paste(cell_type, collapse = "+")))
+        
       }
       else{
         testGroup <- input$GOTestGroup
         normalGroup <- input$GONormalGroup
-        
         t_keep_index <- rv$network_type_list == cell_type &
           rv$network_group_list %in% testGroup
         n_keep_index <- rv$network_type_list == cell_type &
           rv$network_group_list %in% normalGroup
+
+        
+        GoDir <-
+          paste0(fcDir, paste0("/", paste(
+            paste(cell_type, collapse = "+"),
+            paste(normalGroup, collapse = "+"),
+            paste(testGroup, collapse = "+"),
+            sep = "-"
+          )))
       }
     }
     
+    if (!dir.exists(GoDir)) {
+      dir.create(GoDir)
+    }
     df_n <- df[, n_keep_index]
     df_t <- df[, t_keep_index]
     
@@ -1663,7 +1736,8 @@ GOEvent <- function(input, rv, session) {
                   rv$outputDir,
                   progress)
     
-    save(GO_result, file = paste0(rv$outputDir, "/GO_result.RData"))
+
+    save(GO_result, file = paste0(GoDir, "/GO_result.RData"))
     rv$GO_up_table <- GO_result[[1]]
     rv$GO_dn_table <- GO_result[[2]]
     rv$netGO_up <- GO_result[[3]]
@@ -1684,6 +1758,11 @@ GOEvent <- function(input, rv, session) {
     rv$GO_list <- GO_list
     selectGONetwork(input, rv, session)
     loadGONetworkSelect(rv, rv$GO_list)
+    
+    
+    save(GoDir, file = paste0(rv$outputDir, "/lastGOIndexing.RData"))
+    
+    
     rm(df, df_n, df_t, GO_result, GO_list, GO_name)
     gc()
     progress$set(1, detail = "Finish")

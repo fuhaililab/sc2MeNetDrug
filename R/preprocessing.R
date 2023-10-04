@@ -71,6 +71,7 @@ mouse_to_human_convert <- function(data, gene_list) {
   gene_list <- data.frame(original_gene = gene_list)
   map_gene_result <-
     gene_list %>% inner_join(mouse_human_pair, by = c("original_gene" = "mouse_gene"))
+  
   data <- data[map_gene_result$original_gene,]
   rownames(data) <- as.character(map_gene_result$human_gene)
   if (sum(duplicated(rownames(data))) > 0) {

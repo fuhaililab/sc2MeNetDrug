@@ -321,23 +321,19 @@ upStreamNetwork <-
     #up regulated ligand-expressed receptor
     ligand_links <- upLigand_expReceptor[[1]][[2]]
     ligand_nodes <- upLigand_expReceptor[[1]][[3]]
-    print(ligand_nodes)
     ligand_type <-
       sapply(ligand_nodes[, 2], function(x) {
         ifelse(x == "cell", "ligand cell", x)
       })
-    print(2)
     ligand_nodes[, 2] <- ligand_type
     ligand_gene_type <-
       apply(ligand_nodes, 1, function(x) {
         paste(x, collapse = "_")
       })
-    print(3)
     ligand_nodes <-
       data.frame(id = ligand_nodes[, 1],
                  parent = ligand_type,
                  gene_type = ligand_gene_type)
-    print(4)
     ligand_links <-
       merge(
         ligand_links,
@@ -355,22 +351,18 @@ upStreamNetwork <-
         all.x = TRUE
       )[, c(4, 6)]
     colnames(ligand_links) <- c("source", "target")
-    print(5)
-    
+
     receptor_links <- upLigand_expReceptor[[2]][[2]]
     receptor_nodes <- upLigand_expReceptor[[2]][[3]]
-    print(6)
     receptor_type <-
       sapply(receptor_nodes[, 2], function(x) {
         ifelse(x == "cell", "receptor cell", x)
       })
-    print(7)
     receptor_nodes[, 2] <- receptor_type
     receptor_gene_type <-
       apply(receptor_nodes, 1, function(x) {
         paste(x, collapse = "_")
       })
-    print(8)
     receptor_nodes <-
       data.frame(id = receptor_nodes[, 1],
                  parent = receptor_type,
@@ -391,8 +383,7 @@ upStreamNetwork <-
         by.y = "id",
         all.x = TRUE
       )[, c(4, 6)]
-    print(9)
-    
+
     receptor_source <- receptor_links[, 2]
     receptor_links[, 2] <- receptor_links[, 1]
     receptor_links[, 1] <- receptor_source

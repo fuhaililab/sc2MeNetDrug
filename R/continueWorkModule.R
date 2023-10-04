@@ -105,8 +105,9 @@ continueWork <- function(input, rv, session) {
       gc()
     }
     progress$set(0.83, detail = "reload GO analytics data")
-    if (file.exists(paste0(rv$outputDir, "/GO_result.RData"))) {
-      load(paste0(rv$outputDir, "/GO_result.RData"))
+    if (file.exists(paste0(rv$outputDir, "/lastGOIndexing.RData"))) {
+      load(paste0(rv$outputDir, "/lastGOIndexing.RData"))
+      load(paste0(GoDir, "/GO_result.RData"))
       rv$GO_up_table <- GO_result[[1]]
       rv$GO_dn_table <- GO_result[[2]]
       rv$netGO_up <- GO_result[[3]]
@@ -148,17 +149,10 @@ continueWork <- function(input, rv, session) {
       networkComputed = 1
       rv$cell_type1 = cell_type1
       rv$cell_type2 = cell_type2
+      
     }
     
     if (networkComputed == 1) {
-      fcDir <- paste0(rv$outputDir, "/cellCommunication")
-      networkDir <-
-        paste0("/", paste(
-          paste(rv$cell_type1, collapse = "+"),
-          paste(rv$cell_type2, collapse = "+"),
-          sep = "-"
-        ))
-      netDir <- paste0(fcDir, networkDir)
       if (file.exists(paste0(netDir, "/genesInformation.RData"))) {
         load(paste0(netDir, "/ligRecInformation.RData"))
         rv$cell_type1_ligands <- ligRecInformation[[1]]

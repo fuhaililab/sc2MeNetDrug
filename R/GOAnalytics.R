@@ -75,10 +75,11 @@ goEnrichAnalysisV1a <- function(gs1, all_gene) {
   # convert gene symbol to entrezID
   all_gene <- mapIds(org.Hs.eg.db, all_gene, 'ENTREZID', 'SYMBOL')
   all_gene <- all_gene[-which(is.na(all_gene))]
-  
+
   gs1 <- mapIds(org.Hs.eg.db, gs1, 'ENTREZID', 'SYMBOL')
-  gs1 <- gs1[-which(is.na(gs1))]
-  
+  save(gs1, file="test.rdata")
+  gs1 <- gs1[!is.na(gs1)]
+
   gs2 <- setdiff(all_gene, gs1)
   # check all the GO terms related to these genes
   go_t1 <- mget(gs1, org.Hs.egGO)
@@ -95,7 +96,10 @@ goEnrichAnalysisV1a <- function(gs1, all_gene) {
   N_gs2 <- length(gs2)
   xt <- matrix(1.0, 2, 2)
   nt <- length(ids_go_1)
+
+  
   pv_go_1 <- matrix(1.0, nt, 4)
+
   for (i in 1:nt) {
     go_idt <- ids_go_1[i]
     gs_t1 <- get(go_idt, org.Hs.egGO2ALLEGS)
@@ -138,9 +142,9 @@ getGeneGoNetworkV1a <- function(gs0, GO1) {
   library(GO.db)
   
   gs1 <- mapIds(org.Hs.eg.db, gs0, 'ENTREZID', 'SYMBOL')
-  idxt <- which(is.na(gs1))
-  gs1 <- gs1[-idxt]
-  gs0 <- gs0[-idxt]
+  idxt <- is.na(gs1)
+  gs1 <- gs1[!idxt]
+  gs0 <- gs0[!idxt]
   
   nt <- length(GO1)
   geneGoNet <- c("GO", "Gene")
@@ -149,7 +153,7 @@ getGeneGoNetworkV1a <- function(gs0, GO1) {
     gs_t1 <- get(go_idt, org.Hs.egGO2ALLEGS)
     #
     gs_t2 <- intersect(gs1, gs_t1)
-    idxt1 <- which(gs1 %in% gs_t2)
+    idxt1 <- gs1 %in% gs_t2
     gs_t3 <- gs0[idxt1]
     
     nt1 <- length(gs_t2)

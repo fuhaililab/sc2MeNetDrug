@@ -84,7 +84,7 @@ communication <-
            pv_thres,
            cell_type1,
            cell_type2,
-           outputDir,
+           netDir,
            ligRecDatabase,
            TfTargetInteraction,
            keggInfo,
@@ -93,21 +93,6 @@ communication <-
            useOld,
            padjust,
            progress) {
-    fcDir <- paste0(outputDir, "/cellCommunication")
-    if (!file.exists(fcDir)) {
-      dir.create(fcDir)
-    }
-    
-    networkDir <-
-      paste0("/", paste(
-        paste(cell_type1, collapse = "+"),
-        paste(cell_type2, collapse = "+"),
-        sep = "-"
-      ))
-    netDir <- paste0(fcDir, networkDir)
-    if (!file.exists(netDir)) {
-      dir.create(netDir)
-    }
     
     
     # calculate mean
@@ -639,6 +624,7 @@ network_kegg <-
     
     return(
       list(
+        netInfo,
         activated_nodes,
         activated_edges,
         communication_nodes,
@@ -794,7 +780,6 @@ network_string <-
                     pvCellType2[, 2] < pv_thres]
     gs_2a <-
       setdiff(as.character(intersect(gs_select1, node_String)), gs_1a) # gs_select1 is the selected genes (for example, top 100 up-regulated genes)
-    
     # generate the network
     nt <- length(gs_1a)
     downstream_network <- c('source', 'target')
@@ -805,6 +790,7 @@ network_string <-
       }
       downstream_network <- rbind(downstream_network, net_tmp)
     }
+    
     if (length(downstream_network) < 3) {
       downstream_network <- NULL
     } else{
@@ -919,7 +905,7 @@ network_string <-
       communication_edges <- NULL
     }
     
-    return(list(NULL, NULL, communication_nodes, communication_edges))
+    return(list(NULL, NULL, NULL, communication_nodes, communication_edges))
   }
 
 
@@ -937,7 +923,7 @@ generateKeggReceptorNetworkV1 <- function(netInfo, Rs, T0) {
     v_t_ai <- netInfo[[3]]
     
     # T0 <- log2(1.25) # threshold with mean-node score >= T0
-    T1 <- log2(1.25) # threshold with mean-node score <= -T1
+    T1 <- T0 # threshold with mean-node score <= -T1
     path_t <- matrix(ncol = 3)
     colnames(path_t) <- c('source', 'target', 'PathwayName')
     path_ti <- matrix(ncol = 3)
@@ -981,7 +967,7 @@ generateKeggReceptorNetworkV1 <- function(netInfo, Rs, T0) {
 #' util function for generating inter-cell communication network using KEGG.
 #'
 #' @param netInfo KEGG database
-#' @param T0 Up-regulated threshold.
+#' @param T0 Up/down-regulated threshold.
 #'
 #' @return
 #' @export
@@ -996,7 +982,7 @@ generateKeggActivationNetworkV1 <- function(netInfo, T0) {
     v_t_ai <- netInfo[[3]]
     
     # T0 <- log2(1.25) # threshold with mean-node score >= T0
-    T1 <- log2(1.25) # threshold with mean-node score <= -T1
+    T1 <- T0 # threshold with mean-node score <= -T1
     path_t <- matrix(ncol = 3)
     colnames(path_t) <- c('source', 'target', 'PathwayName')
     path_ti <- matrix(ncol = 3)
