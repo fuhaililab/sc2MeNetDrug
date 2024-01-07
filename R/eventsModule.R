@@ -279,6 +279,7 @@ drEvent <- function(input, rv, session) {
     progress$set(0.5, detail = "Run UMAP")
     data <- UMAP(data, input$nPC)
     umap_result <- data.frame(data[["umap"]]@cell.embeddings)
+    colnames(umap_result) <- c("UMAP_1", "UMAP_2")
     rv$df_dr <- umap_result
     rv$rna_df <- data
     #save results
